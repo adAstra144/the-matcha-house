@@ -1,1 +1,14 @@
-/*? Nothing Here Yet... ?*/
+:root {
+  --primary: #234A2C;     
+  --secondary: #5C8A3C;     
+  
+  --bg-warm: #F5F2EC;
+  --bg-soft: #E8E0D0;
+  
+  --wood-accent: #C47B3A; 
+  
+  --text: #1C1C1A;
+  --text-muted: #5A5A52;
+  
+  --white: #FFFFFF;
+}
