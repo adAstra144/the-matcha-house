@@ -50,6 +50,10 @@ header .brand {
     color: var(--primary);
 }
 
+header .brand h1 {
+    font-size: 1.5rem;
+}
+
 header nav {
     display: flex;
     align-items: center;
@@ -63,7 +67,6 @@ header nav a {
     font-size: 1.2rem;
     color: var(--text);
     margin: 0 30px;
-    transform: translateX(-50px);
     transition: 0.3s ease;
 }
 
