@@ -35,7 +35,7 @@ header {
 
     padding: 0 20px;
 
-    height: 90px;
+    height: 70px;
     width: 100%;
 
     background-color: var(--bg-soft);
@@ -69,4 +69,5 @@ header nav a {
 
 header nav a:hover {
     color: var(--accent);
+    text-decoration: underline;
 }
