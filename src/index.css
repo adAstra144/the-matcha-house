@@ -1,0 +1,69 @@
+body {
+    overflow-y: auto scroll;
+}
+
+main {
+    height: calc(100vh - 90px);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* BG Img with dim layer */
+    background:
+        linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.45)),
+        url("/src/assets/img-2.png") center / cover no-repeat;
+
+    /* Lighter dim
+    background:
+        linear-gradient(to right, rgba(35, 74, 44, 0.85), rgba(35, 74, 44, 0.35)),
+        url("/src/assets/img-1.png") center / cover no-repeat;*/
+}
+
+.hero {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: var(--bg-warm);
+}
+
+.hero h1 {
+    margin-left: 10%;
+
+    font-size: 3rem;
+}
+
+.hero p {
+    margin-left: 10%;
+
+    font-size: 1.3rem;
+}
+
+.cta {
+    width: fit-content;
+
+    display: inline-block;
+
+    margin-left: 10%;
+    margin-top: 1.5rem;
+    padding: 0.85rem 1.75rem;
+
+    background: var(--accent);
+    color: var(--text);
+
+    font-weight: 700;
+    text-decoration: none;
+
+    border-radius: 999px;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.cta:hover {
+    background: #d68a47;
+    transform: translateY(-1px);
+}

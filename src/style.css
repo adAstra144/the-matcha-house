@@ -1,14 +1,72 @@
 :root {
-  --primary: #234A2C;     
-  --secondary: #5C8A3C;     
-  
+  --primary: #234A2C;
+  --secondary: #5C8A3C;
+
   --bg-warm: #F5F2EC;
   --bg-soft: #E8E0D0;
-  
-  --wood-accent: #C47B3A; 
-  
+
+  --accent: #C47B3A;
+
   --text: #1C1C1A;
   --text-muted: #5A5A52;
-  
+
   --white: #FFFFFF;
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "DM Sans", system-ui, sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Fraunces", Georgia, serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 0 20px;
+
+    height: 90px;
+    width: 100%;
+
+    background-color: var(--bg-soft);
+}
+
+header .brand {
+    position: absolute;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    color: var(--primary);
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+}
+
+header nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: var(--text);
+    margin: 0 30px;
+    transform: translateX(-50px);
+    transition: 0.3s ease;
+}
+
+header nav a:hover {
+    color: var(--accent);
 }
