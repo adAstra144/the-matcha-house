@@ -1,0 +1,5 @@
+header nav a:nth-of-type(3) {
+    color: var(--accent);
+
+    pointer-events: none;
+}

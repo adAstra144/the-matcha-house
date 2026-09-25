@@ -1,7 +1,11 @@
 body {
     overflow-y: auto scroll;
+}
 
-    background-color: var(--bg-soft);
+header nav a:nth-of-type(2) {
+    color: var(--accent);
+
+    pointer-events: none;
 }
 
 main {
@@ -23,12 +27,8 @@ main {
     color: var(--bg-warm);
 }
 
-.intro h1 {
-    font-size: 3rem;
-}
-
 .menu {
-    height: calc(100dvh);
+    min-height: calc(100dvh);
     width: 100%;
 
     display: flex;
@@ -46,7 +46,7 @@ main {
 
 .item-container {
     /* Width of 5 items + (gap * items) + padding(on both sides) */
-    width: 980px;
+    width: min(980px, 100%);
 
     display: flex;
     flex-wrap: wrap;
@@ -54,8 +54,9 @@ main {
     justify-content: center;
 
     margin-top: 15px;
-    gap: 50px;
+    margin-bottom: 45px;
     padding: 10px;
+    gap: 50px;
 
     border: 2px solid var(--text-muted);
     border-radius: 20px;
@@ -63,7 +64,112 @@ main {
 
 .item {
     width: 150px;
-    height: auto;
+    padding: 0;
 
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    border-radius: inherit;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(28, 28, 26, 0.2);
+}
+
+.item:focus-visible,
+.modal-close:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.item-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(720px, calc(100% - 32px));
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+    border-radius: 20px;
+
+    background: var(--bg-warm);
+    color: var(--text);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.item-modal::backdrop {
+    background: rgba(20, 40, 20, 0.72);
+}
+
+.modal-content {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.9fr) 1fr;
+    align-items: center;
+}
+
+.modal-image {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    object-fit: cover;
+    background: var(--bg-soft);
+}
+
+.modal-details {
+    padding: 48px 36px 36px;
+}
+
+.modal-details h2 {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.modal-prices {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 24px;
+    margin-top: 10px;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    color: var(--accent);
+}
+
+.modal-description {
+    margin-top: 18px;
+    color: var(--text-muted);
+}
+
+.modal-close {
+    position: absolute;
+    z-index: 1;
+    top: 12px;
+    right: 12px;
+    width: 38px;
+    height: 38px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: var(--primary);
+    color: var(--white);
+    font-size: 2rem;
+
+    line-height: 1;
     cursor: pointer;
 }

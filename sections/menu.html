@@ -18,12 +18,17 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header>
         <a href="/" class="brand">
             <h1>The Matcha House</h1>
         </a>
 
         <nav>
+            <a href="/">
+                <span>Home</span>
+            </a>
+
             <a href="/menu">
                 <span>Menu</span>
             </a>
@@ -40,26 +45,146 @@
 
     <main>
 
-        <section class="intro">
-            <h1>Menu</h1>
-        </section>
+        <section class="intro"></section>
 
         <section class="menu">
-            <h1>Macha Drinks</h1>
+
+            <h1>Macha Series Drinks</h1>
             <div class="item-container">
-                <img class="item" src="/src/assets/items/matcha/dirty-matcha-latte.png">
-                <img class="item" src="/src/assets/items/matcha/earthday-matcha.png">
-                <img class="item" src="/src/assets/items/matcha/egg-matcha.png">
-                <img class="item" src="/src/assets/items/matcha/iced-matcha-coco.png">
-                <img class="item" src="/src/assets/items/matcha/london-fog-matcha.png">
-                <img class="item" src="/src/assets/items/matcha/matcha-latte.png">
-                <img class="item" src="/src/assets/items/matcha/matcha-lemonade.png">
-                <img class="item" src="/src/assets/items/matcha/usucha.png">
+
+                <button type="button" data-item="dirty-matcha-latte" class="item" aria-label="View Dirty Matcha Latte details">
+                    <img src="/src/assets/items/matcha/dirty-matcha-latte.png" alt="Dirty Matcha Latte">
+                </button>
+
+                <button type="button" data-item="earthday-matcha" class="item" aria-label="View Earthday Matcha details">
+                    <img src="/src/assets/items/matcha/earthday-matcha.png" alt="Earthday Matcha">
+                </button>
+
+                <button type="button" data-item="egg-matcha" class="item" aria-label="View Egg Matcha details">
+                    <img src="/src/assets/items/matcha/egg-matcha.png" alt="Egg Matcha">
+                </button>
+
+                <button type="button" data-item="iced-matcha-coco" class="item" aria-label="View Iced Matcha Coco details">
+                    <img src="/src/assets/items/matcha/iced-matcha-coco.png" alt="Iced Matcha Coco">
+                </button>
+
+                <button type="button" data-item="london-fog-matcha" class="item" aria-label="View London Fog Matcha details">
+                    <img src="/src/assets/items/matcha/london-fog-matcha.png" alt="London Fog Matcha">
+                </button>
+
+                <button type="button" data-item="matcha-latte" class="item" aria-label="View Matcha Latte details">
+                    <img src="/src/assets/items/matcha/matcha-latte.png" alt="Matcha Latte">
+                </button>
+
+                <button type="button" data-item="matcha-lemonade" class="item" aria-label="View Matcha Lemonade details">
+                    <img src="/src/assets/items/matcha/matcha-lemonade.png" alt="Matcha Lemonade">
+                </button>
+
+                <button type="button" data-item="usucha" class="item" aria-label="View Usucha details">
+                    <img src="/src/assets/items/matcha/usucha.png" alt="Usucha">
+                </button>
+
+            </div>
+
+            <h1>Signature Coffee Series</h1>
+            <div class="item-container">
+
+                <button type="button" data-item="iced-coffee-latte" class="item" aria-label="View Iced Coffee Latte details">
+                    <img src="/src/assets/items/coffee/iced-coffee-latte.png" alt="Iced Coffee Latte">
+                </button>
+
+                <button type="button" data-item="orange-espresso" class="item" aria-label="View Orange Espresso details">
+                    <img src="/src/assets/items/coffee/orange-espresso.png" alt="Orange Espresso">
+                </button>
+
+                <button type="button" data-item="baristas-drink" class="item" aria-label="View Barista's Drink details">
+                    <img src="/src/assets/items/coffee/baristas-drink.png" alt="Barista's Drink">
+                </button>
+
+                <button type="button" data-item="banana-latte" class="item" aria-label="View Banana Latte details">
+                    <img src="/src/assets/items/coffee/banana-latte.png" alt="Banana Latte">
+                </button>
+
+                <button type="button" data-item="iced-spanish-latte" class="item" aria-label="View Iced Spanish Latte details">
+                    <img src="/src/assets/items/coffee/iced-spanish-latte.png" alt="Iced Spanish Latte">
+                </button>
+
+                <button type="button" data-item="einspanner-coffee-latte" class="item" aria-label="View Einspanner Coffee Latte details">
+                    <img src="/src/assets/items/coffee/Einspanner-coffee-latte.png" alt="Einspanner Coffee Latte">
+                </button>
+
+                <button type="button" data-item="iced-mocha" class="item" aria-label="View Iced Mocha details">
+                    <img src="/src/assets/items/coffee/iced-mocha.png" alt="Iced Mocha">
+                </button>
+
+                <button type="button" data-item="iced-salted-coffee" class="item" aria-label="View Iced Salted Coffee details">
+                    <img src="/src/assets/items/coffee/iced-salted-coffee.png" alt="Iced Salted Coffee">
+                </button>
+
+                <button type="button" data-item="iced-americano" class="item" aria-label="View Iced Americano details">
+                    <img src="/src/assets/items/coffee/iced-americano.png" alt="Iced Americano">
+                </button>
+
+            </div>
+
+            <h1>Signature Matcha Drinks</h1>
+            <div class="item-container">
+
+                <button type="button" data-item="signature-tmh-matcha" class="item" aria-label="View Signature TMH Matcha details">
+                    <img src="/src/assets/items/matcha-sig/signature-tmh-matcha.png" alt="Signature TMH Matcha">
+                </button>
+
+                <button type="button" data-item="ube-matcha-latte" class="item" aria-label="View Ube Matcha Latte details">
+                    <img src="/src/assets/items/matcha-sig/ube-matcha-latte.png" alt="Ube Matcha Latte">
+                </button>
+
+                <button type="button" data-item="cheese-cloud-matcha" class="item" aria-label="View Cheese Cloud Matcha details">
+                    <img src="/src/assets/items/matcha-sig/cheese-cloud-matcha.png" alt="Cheese Cloud Matcha">
+                </button>
+
+                <button type="button" data-item="banana-pudding-matcha" class="item" aria-label="View Banana Pudding Matcha details">
+                    <img src="/src/assets/items/matcha-sig/banana-pudding-matcha.png" alt="Banana Pudding Matcha">
+                </button>
+
+                <button type="button" data-item="mango-matcha-latte" class="item" aria-label="View Mango Matcha Latte details">
+                    <img src="/src/assets/items/matcha-sig/mango-matcha-latte.png" alt="Mango Matcha Latte">
+                </button>
+
+                <button type="button" data-item="einspanner-matcha-latte" class="item" aria-label="View Einspanner Matcha Latte details">
+                    <img src="/src/assets/items/matcha-sig/einspanner-matcha-latte.png" alt="Einspanner Matcha Latte">
+                </button>
+
+                <button type="button" data-item="strawberry-matcha-latte" class="item" aria-label="View Strawberry Matcha Latte details">
+                    <img src="/src/assets/items/matcha-sig/strawberry-matcha-latte.png" alt="Strawberry Matcha Latte">
+                </button>
+
+                <button type="button" data-item="coconut-matcha-cloud" class="item" aria-label="View Coconut Matcha Cloud details">
+                    <img src="/src/assets/items/matcha-sig/coconut-matcha-cloud.png" alt="Coconut Matcha Cloud">
+                </button>
+
+                <button type="button" data-item="banana-matcha" class="item" aria-label="View Banana Matcha details">
+                    <img src="/src/assets/items/matcha-sig/banana-matcha.png" alt="Banana Matcha">
+                </button>
+
             </div>
 
         </section>
 
     </main>
 
+    <!-- Item Popup Modal -->
+    <dialog class="item-modal" aria-labelledby="modal-name">
+        <button type="button" class="modal-close" aria-label="Close item details">&times;</button>
+        <div class="modal-content">
+            <img class="modal-image" src="" alt="">
+            <div class="modal-details">
+                <h2 id="modal-name"></h2>
+                <div class="modal-prices"></div>
+                <p class="modal-description"></p>
+            </div>
+        </div>
+    </dialog>
+
+    <script type="module" src="/src/menu.js"></script>
 </body>
 </html>
