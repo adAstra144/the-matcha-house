@@ -57,9 +57,6 @@ main {
     margin-bottom: 45px;
     padding: 10px;
     gap: 50px;
-
-    border: 2px solid var(--text-muted);
-    border-radius: 20px;
 }
 
 .item {
@@ -74,15 +71,15 @@ main {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(28, 28, 26, 0.2);
+}
+
 .item img {
     width: 100%;
     height: auto;
     border-radius: inherit;
-}
-
-.item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(28, 28, 26, 0.2);
 }
 
 .item:focus-visible,

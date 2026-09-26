@@ -68,6 +68,16 @@ const menuItems = {
         description: "A bright and tangy lemonade with an earthy matcha finish.",
         image: "/src/assets/items/matcha/matcha-lemonade.png",
     },
+    usucha: {
+        name: "Usucha",
+        prices: [
+            { "label": "Regular", amount: "₱180" },
+            { "label": "Grande", amount: "₱190" },
+            { "label": "Venti", amount: "₱230" },
+        ],
+        description: "Traditional thin matcha, whisked simply to highlight its flavor.",
+        image: "/src/assets/items/matcha/usucha.png",
+    },
     "iced-coffee-latte": {
         name: "Iced Coffee Latte",
         prices: [
@@ -248,15 +258,95 @@ const menuItems = {
         description: "A mellow, creamy banana-and-matcha blend.",
         image: "/src/assets/items/matcha-sig/banana-matcha.png",
     },
-    usucha: {
-        name: "Usucha",
+    "chocolate-coconut-cloud": {
+        name: "Chocolate Coconut Cloud",
         prices: [
-            { "label": "Regular", amount: "₱180" },
-            { "label": "Grande", amount: "₱190" },
-            { "label": "Venti", amount: "₱230" },
+            { label: "Regular", amount: "₱155" },
+            { label: "Grande", amount: "₱185" },
+            { label: "Venti", amount: "₱205" },
         ],
-        description: "Traditional thin matcha, whisked simply to highlight its flavor.",
-        image: "/src/assets/items/matcha/usucha.png",
+        description: "Chocolate and coconut layered into a rich, creamy cloud drink.",
+        image: "/src/assets/items/cloud-series/chocolate-coconut-cloud.png",
+    },
+    "cloud-coconut-matcha-cloud": {
+        name: "Coconut Matcha Cloud",
+        prices: [
+            { label: "Regular", amount: "₱255" },
+            { label: "Grande", amount: "₱275" },
+            { label: "Venti", amount: "₱305" },
+        ],
+        description: "Earthy matcha topped with a refreshing coconut cream cloud.",
+        image: "/src/assets/items/cloud-series/coconut-matcha-cloud.png",
+    },
+    "espresso-cloud-tiramisu-latte": {
+        name: "Espresso Cloud Tiramisu Latte",
+        prices: [
+            { label: "Regular", amount: "₱205" },
+            { label: "Grande", amount: "₱235" },
+            { label: "Venti", amount: "₱265" },
+        ],
+        description: "Espresso and tiramisu-inspired flavors finished with a soft cloud topping.",
+        image: "/src/assets/items/cloud-series/espresso-cloud-tiramisu-latte.png",
+    },
+    "espresso-coconut-cloud": {
+        name: "Espresso Coconut Cloud",
+        prices: [
+            { label: "Regular", amount: "₱195" },
+            { label: "Grande", amount: "₱205" },
+            { label: "Venti", amount: "₱225" },
+        ],
+        description: "Bold espresso balanced by a smooth coconut cream cloud.",
+        image: "/src/assets/items/cloud-series/espresso-coconut-cloud.png",
+    },
+    "espresso-cold-foam": {
+        name: "Espresso Cold Foam",
+        prices: [
+            { label: "Regular", amount: "₱155" },
+            { label: "Grande", amount: "₱175" },
+            { label: "Venti", amount: "₱205" },
+        ],
+        description: "Iced espresso finished with a silky layer of cold foam.",
+        image: "/src/assets/items/cloud-series/espresso-cold-foam.png",
+    },
+    "hojicha-coconut-cloud": {
+        name: "Hojicha Coconut Cloud",
+        prices: [
+            { label: "Regular", amount: "₱255" },
+            { label: "Grande", amount: "₱275" },
+            { label: "Venti", amount: "₱305" },
+        ],
+        description: "Roasty hojicha paired with a light, creamy coconut cloud.",
+        image: "/src/assets/items/cloud-series/hojicha-coconut-cloud.png",
+    },
+    "jasmine-matcha-cloud": {
+        name: "Jasmine Matcha Cloud",
+        prices: [
+            { label: "Regular", amount: "₱255" },
+            { label: "Grande", amount: "₱275" },
+            { label: "Venti", amount: "₱305" },
+        ],
+        description: "Floral jasmine notes and matcha under a delicate cream cloud.",
+        image: "/src/assets/items/cloud-series/jasmine-matcha-cloud.png",
+    },
+    "matcha-cloud-tiramisu-latte": {
+        name: "Matcha Cloud Tiramisu Latte",
+        prices: [
+            { label: "Regular", amount: "₱295" },
+            { label: "Grande", amount: "₱335" },
+            { label: "Venti", amount: "₱355" },
+        ],
+        description: "A creamy matcha latte with tiramisu-inspired layers and a cloud topping.",
+        image: "/src/assets/items/cloud-series/matcha-cloud-tiramisu-latte.png",
+    },
+    "strawberry-matcha-coconut-cloud": {
+        name: "Strawberry Matcha Coconut Cloud",
+        prices: [
+            { label: "Regular", amount: "₱265" },
+            { label: "Grande", amount: "₱295" },
+            { label: "Venti", amount: "₱315" },
+        ],
+        description: "Strawberry and matcha brought together with a coconut cream cloud.",
+        image: "/src/assets/items/cloud-series/strawberry-matcha-coconut-cloud.png",
     },
 };
 

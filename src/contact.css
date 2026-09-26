@@ -3,3 +3,20 @@ header nav a:nth-of-type(4) {
 
     pointer-events: none;
 }
+
+.intro {
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.35)),
+        url("/src/assets/seat.png") center / cover no-repeat;
+
+    background-position: center 75%;
+
+    color: var(--bg-warm);
+}

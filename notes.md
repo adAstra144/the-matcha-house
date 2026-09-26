@@ -1,3 +1,10 @@
-## TODO
+# Notes
+Temporary notes whilst the project is in development
 
-- Replace the descriptions of the items in menu.js
+## Tip
+- Food menu in gmaps
+
+## TODO
+- Complete all menu items
+- Location section
+- Contact section
