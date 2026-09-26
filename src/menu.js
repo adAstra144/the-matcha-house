@@ -1,3 +1,14 @@
+// Dynamically import all item images so Vite handles hashing in production
+const imageModules = import.meta.glob('/src/assets/items/**/*.png', { eager: true })
+
+// Build a map of image path -> hashed URL
+const imageMap = {}
+for (const [path, module] of Object.entries(imageModules)) {
+  // Extract filename without extension as key (e.g., "dirty-matcha-latte")
+  const fileName = path.split('/').pop().replace(/\.png$/, '')
+  imageMap[fileName] = module.default
+}
+
 const menuItems = {
     "dirty-matcha-latte": {
         name: "Dirty Matcha Latte",
@@ -7,7 +18,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱325" },
         ],
         description: "Creamy matcha balanced with a bold espresso finish.",
-        image: "/src/assets/items/matcha/dirty-matcha-latte.png",
+        image: imageMap["dirty-matcha-latte"],
     },
     "earthday-matcha": {
         name: "Earthday Matcha",
@@ -17,7 +28,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱315" },
         ],
         description: "A refreshing matcha drink inspired by bright, earthy flavors.",
-        image: "/src/assets/items/matcha/earthday-matcha.png",
+        image: imageMap["earthday-matcha"],
     },
     "egg-matcha": {
         name: "Egg Matcha",
@@ -26,7 +37,7 @@ const menuItems = {
             { "label": "Grande", amount: "₱275" },
         ],
         description: "Velvety matcha with a rich and indulgent twist.",
-        image: "/src/assets/items/matcha/egg-matcha.png",
+        image: imageMap["egg-matcha"],
     },
     "iced-matcha-coco": {
         name: "Iced Matcha Coco",
@@ -36,7 +47,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱295" },
         ],
         description: "Chilled matcha paired with smooth coconut flavor.",
-        image: "/src/assets/items/matcha/iced-matcha-coco.png",
+        image: imageMap["iced-matcha-coco"],
     },
     "london-fog-matcha": {
         name: "London Fog Matcha",
@@ -46,7 +57,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱305" },
         ],
         description: "A fragrant, creamy matcha take on the classic London Fog.",
-        image: "/src/assets/items/matcha/london-fog-matcha.png",
+        image: imageMap["london-fog-matcha"],
     },
     "matcha-latte": {
         name: "Matcha Latte",
@@ -56,7 +67,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱315" },
         ],
         description: "A smooth, comforting blend of ceremonial-style matcha and milk.",
-        image: "/src/assets/items/matcha/matcha-latte.png",
+        image: imageMap["matcha-latte"],
     },
     "matcha-lemonade": {
         name: "Matcha Lemonade",
@@ -66,7 +77,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱275" },
         ],
         description: "A bright and tangy lemonade with an earthy matcha finish.",
-        image: "/src/assets/items/matcha/matcha-lemonade.png",
+        image: imageMap["matcha-lemonade"],
     },
     usucha: {
         name: "Usucha",
@@ -76,7 +87,7 @@ const menuItems = {
             { "label": "Venti", amount: "₱230" },
         ],
         description: "Traditional thin matcha, whisked simply to highlight its flavor.",
-        image: "/src/assets/items/matcha/usucha.png",
+        image: imageMap["usucha"],
     },
     "iced-coffee-latte": {
         name: "Iced Coffee Latte",
@@ -86,7 +97,7 @@ const menuItems = {
             { label: "Venti", amount: "₱195" },
         ],
         description: "A smooth espresso-and-milk classic served over ice.",
-        image: "/src/assets/items/coffee/iced-coffee-latte.png",
+        image: imageMap["iced-coffee-latte"],
     },
     "orange-espresso": {
         name: "Orange Espresso",
@@ -96,7 +107,7 @@ const menuItems = {
             { label: "Venti", amount: "₱225" },
         ],
         description: "Bright citrus meets a bold espresso shot for a refreshing coffee drink.",
-        image: "/src/assets/items/coffee/orange-espresso.png",
+        image: imageMap["orange-espresso"],
     },
     "baristas-drink": {
         name: "Barista's Drink",
@@ -106,7 +117,7 @@ const menuItems = {
             { label: "Venti", amount: "₱280" },
         ],
         description: "A rotating coffee creation selected by the barista.",
-        image: "/src/assets/items/coffee/baristas-drink.png",
+        image: imageMap["baristas-drink"],
     },
     "banana-latte": {
         name: "Banana Latte",
@@ -116,7 +127,7 @@ const menuItems = {
             { label: "Venti", amount: "₱225" },
         ],
         description: "Creamy banana flavor blended with smooth coffee and milk.",
-        image: "/src/assets/items/coffee/banana-latte.png",
+        image: imageMap["banana-latte"],
     },
     "iced-spanish-latte": {
         name: "Iced Spanish Latte",
@@ -126,7 +137,7 @@ const menuItems = {
             { label: "Venti", amount: "₱225" },
         ],
         description: "Espresso and milk sweetened with a rich, creamy finish over ice.",
-        image: "/src/assets/items/coffee/iced-spanish-latte.png",
+        image: imageMap["iced-spanish-latte"],
     },
     "einspanner-coffee-latte": {
         name: "Einspanner Coffee Latte",
@@ -136,7 +147,7 @@ const menuItems = {
             { label: "Venti", amount: "₱245" },
         ],
         description: "A coffee latte topped with a generous layer of soft cream.",
-        image: "/src/assets/items/coffee/Einspanner-coffee-latte.png",
+        image: imageMap["einspanner-coffee-latte"],
     },
     "iced-mocha": {
         name: "Iced Mocha",
@@ -146,17 +157,17 @@ const menuItems = {
             { label: "Venti", amount: "₱225" },
         ],
         description: "Chocolate, espresso, and milk served cold for a decadent pick-me-up.",
-        image: "/src/assets/items/coffee/iced-mocha.png",
+        image: imageMap["iced-mocha"],
     },
     "iced-salted-coffee": {
         name: "Iced Salted Coffee",
         prices: [
             { label: "Regular", amount: "₱175" },
             { label: "Grande", amount: "₱195" },
-            { label: "Venti", amount: "₱215" },
+            { "label": "Venti", amount: "₱215" },
         ],
         description: "Chilled coffee with a lightly salted, creamy finish.",
-        image: "/src/assets/items/coffee/iced-salted-coffee.png",
+        image: imageMap["iced-salted-coffee"],
     },
     "iced-americano": {
         name: "Iced Americano",
@@ -166,7 +177,7 @@ const menuItems = {
             { label: "Venti", amount: "₱175" },
         ],
         description: "Bold espresso diluted with chilled water and ice.",
-        image: "/src/assets/items/coffee/iced-americano.png",
+        image: imageMap["iced-americano"],
     },
     "signature-tmh-matcha": {
         name: "Signature TMH Matcha",
@@ -176,7 +187,7 @@ const menuItems = {
             { label: "Venti", amount: "₱335" },
         ],
         description: "The Matcha House's signature creamy matcha creation.",
-        image: "/src/assets/items/matcha-sig/signature-tmh-matcha.png",
+        image: imageMap["signature-tmh-matcha"],
     },
     "ube-matcha-latte": {
         name: "Ube Matcha Latte",
@@ -186,7 +197,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "Earthy matcha paired with the mellow sweetness of ube.",
-        image: "/src/assets/items/matcha-sig/ube-matcha-latte.png",
+        image: imageMap["ube-matcha-latte"],
     },
     "cheese-cloud-matcha": {
         name: "Cheese Cloud Matcha",
@@ -196,7 +207,7 @@ const menuItems = {
             { label: "Venti", amount: "₱335" },
         ],
         description: "Smooth matcha topped with a rich, airy cheese foam.",
-        image: "/src/assets/items/matcha-sig/cheese-cloud-matcha.png",
+        image: imageMap["cheese-cloud-matcha"],
     },
     "banana-pudding-matcha": {
         name: "Banana Pudding Matcha",
@@ -206,7 +217,7 @@ const menuItems = {
             { label: "Venti", amount: "₱355" },
         ],
         description: "Creamy matcha inspired by the comforting flavor of banana pudding.",
-        image: "/src/assets/items/matcha-sig/banana-pudding-matcha.png",
+        image: imageMap["banana-pudding-matcha"],
     },
     "mango-matcha-latte": {
         name: "Mango Matcha Latte",
@@ -216,7 +227,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "A bright mango twist on a smooth iced matcha latte.",
-        image: "/src/assets/items/matcha-sig/mango-matcha-latte.png",
+        image: imageMap["mango-matcha-latte"],
     },
     "einspanner-matcha-latte": {
         name: "Einspanner Matcha Latte",
@@ -226,7 +237,7 @@ const menuItems = {
             { label: "Venti", amount: "₱335" },
         ],
         description: "A creamy matcha latte finished with a generous cloud of cream.",
-        image: "/src/assets/items/matcha-sig/einspanner-matcha-latte.png",
+        image: imageMap["einspanner-matcha-latte"],
     },
     "strawberry-matcha-latte": {
         name: "Strawberry Matcha Latte",
@@ -236,7 +247,7 @@ const menuItems = {
             { label: "Venti", amount: "₱325" },
         ],
         description: "Sweet strawberry and earthy matcha layered with milk.",
-        image: "/src/assets/items/matcha-sig/strawberry-matcha-latte.png",
+        image: imageMap["strawberry-matcha-latte"],
     },
     "coconut-matcha-cloud": {
         name: "Coconut Matcha Cloud",
@@ -246,7 +257,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "Refreshing matcha crowned with a light coconut cream cloud.",
-        image: "/src/assets/items/matcha-sig/coconut-matcha-cloud.png",
+        image: imageMap["coconut-matcha-cloud"],
     },
     "banana-matcha": {
         name: "Banana Matcha",
@@ -256,7 +267,7 @@ const menuItems = {
             { label: "Venti", amount: "₱325" },
         ],
         description: "A mellow, creamy banana-and-matcha blend.",
-        image: "/src/assets/items/matcha-sig/banana-matcha.png",
+        image: imageMap["banana-matcha"],
     },
     "chocolate-coconut-cloud": {
         name: "Chocolate Coconut Cloud",
@@ -266,7 +277,7 @@ const menuItems = {
             { label: "Venti", amount: "₱205" },
         ],
         description: "Chocolate and coconut layered into a rich, creamy cloud drink.",
-        image: "/src/assets/items/cloud-series/chocolate-coconut-cloud.png",
+        image: imageMap["chocolate-coconut-cloud"],
     },
     "cloud-coconut-matcha-cloud": {
         name: "Coconut Matcha Cloud",
@@ -276,7 +287,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "Earthy matcha topped with a refreshing coconut cream cloud.",
-        image: "/src/assets/items/cloud-series/coconut-matcha-cloud.png",
+        image: imageMap["coconut-matcha-cloud"],
     },
     "espresso-cloud-tiramisu-latte": {
         name: "Espresso Cloud Tiramisu Latte",
@@ -286,7 +297,7 @@ const menuItems = {
             { label: "Venti", amount: "₱265" },
         ],
         description: "Espresso and tiramisu-inspired flavors finished with a soft cloud topping.",
-        image: "/src/assets/items/cloud-series/espresso-cloud-tiramisu-latte.png",
+        image: imageMap["espresso-cloud-tiramisu-latte"],
     },
     "espresso-coconut-cloud": {
         name: "Espresso Coconut Cloud",
@@ -296,7 +307,7 @@ const menuItems = {
             { label: "Venti", amount: "₱225" },
         ],
         description: "Bold espresso balanced by a smooth coconut cream cloud.",
-        image: "/src/assets/items/cloud-series/espresso-coconut-cloud.png",
+        image: imageMap["espresso-coconut-cloud"],
     },
     "espresso-cold-foam": {
         name: "Espresso Cold Foam",
@@ -306,7 +317,7 @@ const menuItems = {
             { label: "Venti", amount: "₱205" },
         ],
         description: "Iced espresso finished with a silky layer of cold foam.",
-        image: "/src/assets/items/cloud-series/espresso-cold-foam.png",
+        image: imageMap["espresso-cold-foam"],
     },
     "hojicha-coconut-cloud": {
         name: "Hojicha Coconut Cloud",
@@ -316,7 +327,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "Roasty hojicha paired with a light, creamy coconut cloud.",
-        image: "/src/assets/items/cloud-series/hojicha-coconut-cloud.png",
+        image: imageMap["hojicha-coconut-cloud"],
     },
     "jasmine-matcha-cloud": {
         name: "Jasmine Matcha Cloud",
@@ -326,7 +337,7 @@ const menuItems = {
             { label: "Venti", amount: "₱305" },
         ],
         description: "Floral jasmine notes and matcha under a delicate cream cloud.",
-        image: "/src/assets/items/cloud-series/jasmine-matcha-cloud.png",
+        image: imageMap["jasmine-matcha-cloud"],
     },
     "matcha-cloud-tiramisu-latte": {
         name: "Matcha Cloud Tiramisu Latte",
@@ -336,7 +347,7 @@ const menuItems = {
             { label: "Venti", amount: "₱355" },
         ],
         description: "A creamy matcha latte with tiramisu-inspired layers and a cloud topping.",
-        image: "/src/assets/items/cloud-series/matcha-cloud-tiramisu-latte.png",
+        image: imageMap["matcha-cloud-tiramisu-latte"],
     },
     "strawberry-matcha-coconut-cloud": {
         name: "Strawberry Matcha Coconut Cloud",
@@ -346,7 +357,7 @@ const menuItems = {
             { label: "Venti", amount: "₱315" },
         ],
         description: "Strawberry and matcha brought together with a coconut cream cloud.",
-        image: "/src/assets/items/cloud-series/strawberry-matcha-coconut-cloud.png",
+        image: imageMap["strawberry-matcha-coconut-cloud"],
     },
 };
 
