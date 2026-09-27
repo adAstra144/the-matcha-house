@@ -5,12 +5,14 @@ header nav a:nth-of-type(4) {
 }
 
 .intro {
-    height: 400px;
+    position: relative;
+    height: calc(100dvh - 70px);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 40px;
 
     background:
         linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.35)),
@@ -19,4 +21,48 @@ header nav a:nth-of-type(4) {
     background-position: center 75%;
 
     color: var(--bg-warm);
+}
+
+.contacts {
+    display: flex;
+    gap: 24px;
+    height: auto;
+    width: auto;
+    padding: 0;
+}
+
+.contacts a {
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    text-decoration: none;
+
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contacts a:hover {
+    background: var(--white);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contacts a img {
+    height: 32px;
+    width: 32px;
+
+    filter: brightness(0) invert(1) opacity(0.9);
+    transition: filter 0.25s ease;
+}
+
+.contacts a:hover img {
+    filter: none;
 }

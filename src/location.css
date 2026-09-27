@@ -28,6 +28,13 @@ main {
 .location {
     height: calc(100dvh - 70px);
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 40px;
+    gap: 40px;
 }
 
 .gmaps {
@@ -36,21 +43,23 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-
-    margin-top: 40px;
-    gap: 20px;
 }
 
-.info {
+.pics {
+    width: 80%;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 
-    margin-top: 50px;
+    gap: 20px;
+    padding: 20px;
 }
 
-.info p {
-    font-size: 1.1rem;
+.pics img {
+    width: 500px;
+    height: auto;
+
+    border-radius: 10px;
 }
