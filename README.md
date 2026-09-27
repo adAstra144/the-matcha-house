@@ -1,112 +1,48 @@
 # The Matcha House
 
-A modern, responsive website for **The Matcha House** — a specialty matcha and coffee café.
+A responsive website for **The Matcha House**, a specialty matcha and coffee café. Built with vanilla HTML, CSS, and JavaScript, bundled with Vite.
 
-## Overview
+## Pages
 
-This is a static website built with vanilla HTML, CSS, and JavaScript, using Vite as the build tool. The site features:
-
-- **Home** — Hero section with branding and navigation
-- **Menu** — Comprehensive drink and food menu with interactive modal popups
-- **Location** — Embedded Google Maps and venue photos
-- **Contact** — Contact information and inquiry form
+- **Home** (`index.html`) — hero, branding, navigation
+- **Menu** (`sections/menu.html`) — drink and food menu with item detail popups (Matcha, Coffee, Signature Matcha, Cloud Series, Vietnam Series, Food, Pasta & Salad)
+- **Location** (`sections/location.html`) — embedded Google Map and venue photos
+- **Contact** (`sections/contact.html`) — contact info and inquiry form
 
 ## Tech Stack
 
-- **Vite** — Fast build tool and dev server
-- **Vanilla HTML/CSS/JS** — No frameworks, lightweight and performant
-- **Google Fonts** — DM Sans & Fraunces typography
-- **Google Maps Embed** — Location iframe
+- Vite (build tool / dev server)
+- Vanilla HTML, CSS, JS — no frameworks
+- Google Fonts (DM Sans & Fraunces)
+- Google Maps embed
+
+## Getting Started
+
+```bash
+npm install       # install dependencies
+npm run dev       # start dev server (http://localhost:5173)
+npm run build     # production build → dist/
+npm run preview   # preview the production build
+```
 
 ## Project Structure
 
 ```
-the-matcha-house/
-├── index.html              # Home page
-├── sections/
-│   ├── menu.html           # Full menu with categories
-│   ├── location.html       # Location & photos
-│   └── contact.html        # Contact page
+├── index.html          # Home page
+├── sections/           # Menu, Location, Contact pages
 ├── src/
-│   ├── style.css           # Global styles
-│   ├── reset.css           # CSS reset
-│   ├── index.css           # Home page styles
-│   ├── menu.css            # Menu page styles
-│   ├── location.css        # Location page styles
-│   ├── menu.js             # Menu modal functionality
-│   └── assets/             # Images (brand, menu items, venue photos)
-├── public/                 # Static assets (favicon)
-├── dist/                   # Production build output
-├── vite.config.js          # Vite configuration
-├── vercel.json             # Vercel deployment config
-└── package.json
-```
-
-## Menu Categories
-
-- **Matcha Series** — Classic matcha beverages
-- **Signature Coffee** — Specialty coffee drinks
-- **Signature Matcha** — House matcha creations
-- **Cloud Series** — Cream-topped specialty drinks
-- **Vietnam Series** — Vietnamese-inspired beverages
-- **Comfort Food** — Savory plates and snacks
-- **Pasta & Salad** — Heartier meal options
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18+
-
-### Installation
-
-```bash
-npm install
-```
-
-### Development
-
-```bash
-npm run dev
-```
-Opens a local dev server at `http://localhost:5173`
-
-### Production Build
-
-```bash
-npm run build
-```
-Outputs to `dist/` directory
-
-### Preview Production Build
-
-```bash
-npm run preview
+│   ├── assets/          # Images (brand, menu items, venue photos)
+│   ├── *.css            # Page and global styles
+│   ├── menu.js          # Menu modal logic
+│   └── script.js         # Shared/home page logic
+├── public/              # Static assets (favicon)
+├── vite.config.js       # Multi-page Vite config
+└── vercel.json          # Vercel routing/deploy config
 ```
 
 ## Deployment
 
-Configured for **Vercel** via `vercel.json`. Push to main branch for automatic deployment.
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run preview` | Preview production build locally |
-
-## Assets
-
-Images are stored in `src/assets/` organized by category:
-- `brand.jpg` — Logo
-- `items/matcha/` — Matcha series drinks
-- `items/coffee/` — Coffee series drinks
-- `items/matcha-sig/` — Signature matcha drinks
-- `items/cloud-series/` — Cloud series drinks
-- `items/vietnam/` — Vietnam series drinks
-- `items/food/` — Food items
-- `items/pasta/` — Pasta & salad items
-- `front.jpg`, `img-2.png`, `seat.png`, `lounge.png` — Venue photos
+Deployed on **Vercel**, with routes for `/menu`, `/location`, and `/contact` mapped via `vercel.json`.
 
 ## License
 
