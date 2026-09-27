@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 
 const routes = {
   '/menu': '/sections/menu.html',
@@ -34,5 +35,26 @@ export default defineConfig({
         })
       },
     },
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        // your outputs are main.html-equivalents named index/menu/location/contact
+        globPatterns: ['**/*.{js,css,html,png,svg,woff2}'],
+      },
+      manifest: {
+        name: 'The Matcha House',
+        short_name: 'Matcha House',
+        description: 'Matcha drinks and treats menu',
+        theme_color: '#234A2C',
+        background_color: '#F5F2EC',
+        display: 'standalone',
+        start_url: '/',
+        icons: [
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: 'pwa-maskable-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+        ],
+      },
+    }),
   ],
 })
