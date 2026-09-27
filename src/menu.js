@@ -249,16 +249,6 @@ const menuItems = {
         description: "Sweet strawberry and earthy matcha layered with milk.",
         image: imageMap["strawberry-matcha-latte"],
     },
-    "coconut-matcha-cloud": {
-        name: "Coconut Matcha Cloud",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱275" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "Refreshing matcha crowned with a light coconut cream cloud.",
-        image: imageMap["coconut-matcha-cloud"],
-    },
     "banana-matcha": {
         name: "Banana Matcha",
         prices: [
@@ -279,7 +269,7 @@ const menuItems = {
         description: "Chocolate and coconut layered into a rich, creamy cloud drink.",
         image: imageMap["chocolate-coconut-cloud"],
     },
-    "cloud-coconut-matcha-cloud": {
+    "coconut-matcha-cloud": {
         name: "Coconut Matcha Cloud",
         prices: [
             { label: "Regular", amount: "₱255" },
@@ -358,6 +348,207 @@ const menuItems = {
         ],
         description: "Strawberry and matcha brought together with a coconut cream cloud.",
         image: imageMap["strawberry-matcha-coconut-cloud"],
+    },
+    "coconut-coffee": {
+        name: "Coconut Coffee",
+        prices: [
+            { label: "Regular", amount: "₱185" },
+            { label: "Grande", amount: "₱205" },
+            { label: "Venti", amount: "₱235" },
+        ],
+        description: "Vietnamese-style coffee with sweet coconut cream and condensed milk.",
+        image: imageMap["coconut-coffee"],
+    },
+    "dragon-glow-smoothie": {
+        name: "Dragon Glow Smoothie",
+        prices: [
+            { label: "Grande", amount: "₱335" },
+        ],
+        description: "A vibrant dragon fruit smoothie with a tropical glow.",
+        image: imageMap["dragon-glow-smoothie"],
+    },
+    "egg-coffee": {
+        name: "Egg Coffee",
+        prices: [
+            { label: "Regular", amount: "₱195" },
+            { label: "Grande", amount: "₱215" },
+        ],
+        description: "Classic Vietnamese egg coffee with a rich, velvety egg cream topping.",
+        image: imageMap["egg-coffee"],
+    },
+    "iced-tmh-chocolate": {
+        name: "Iced TMH Chocolate",
+        prices: [
+            { label: "Regular", amount: "₱145" },
+            { label: "Grande", amount: "₱155" },
+            { label: "Venti", amount: "₱175" },
+        ],
+        description: "Rich chocolate drink served over ice, TMH style.",
+        image: imageMap["iced-tmh-chocolate"],
+    },
+    "tmh-pink-drink": {
+        name: "TMH Pink Drink",
+        prices: [
+            { label: "Regular", amount: "₱155" },
+            { label: "Grande", amount: "₱175" },
+            { label: "Venti", amount: "₱185" },
+        ],
+        description: "A refreshing pink fruit blend with a creamy finish.",
+        image: imageMap["tmh-pink-drink"],
+    },
+    "tmh-triple-chocolate-frappe": {
+        name: "TMH Triple Chocolate Frappe",
+        prices: [
+            { label: "Grande", amount: "₱265" },
+        ],
+        description: "Triple-layered chocolate frappe blended to perfection.",
+        image: imageMap["tmh-triple-chocolate-frappe"],
+    },
+    "tra-tac": {
+        name: "Trà Tắc",
+        prices: [
+            { label: "Regular", amount: "₱155" },
+            { label: "Grande", amount: "₱185" },
+            { label: "Venti", amount: "₱205" },
+        ],
+        description: "Vietnamese kumquat tea — tart, sweet, and refreshing.",
+        image: imageMap["tra-tac"],
+    },
+    "beef-enoki": {
+        name: "Beef Enoki",
+        prices: [
+            { label: "Price", amount: "₱285" },
+        ],
+        description: "Tender beef slices with enoki mushrooms in a savory glaze.",
+        image: imageMap["beef-enoki"],
+    },
+    "cheesey-garlic-sourdough": {
+        name: "Cheesey Garlic Sourdough",
+        prices: [
+            { label: "Price", amount: "₱135" },
+        ],
+        description: "Toasted sourdough loaded with garlic butter and melted cheese.",
+        image: imageMap["cheesey-garlic-sourdough"],
+    },
+    "chicken-karaage": {
+        name: "Chicken Karaage",
+        prices: [
+            { label: "Price", amount: "₱235" },
+        ],
+        description: "Japanese-style fried chicken — crispy outside, juicy inside.",
+        image: imageMap["chicken-karaage"],
+    },
+    "chizu-bacon-fries": {
+        name: "Chizu Bacon Fries",
+        prices: [
+            { label: "Price", amount: "₱185" },
+        ],
+        description: "Crispy fries topped with cheese sauce and crispy bacon bits.",
+        image: imageMap["chizu-bacon-fries"],
+    },
+    "cream-cheese-bagel": {
+        name: "Cream Cheese Bagel",
+        prices: [
+            { label: "Price", amount: "₱195" },
+        ],
+        description: "Freshly toasted bagel with smooth, creamy cream cheese spread.",
+        image: imageMap["cream-cheese-bagel"],
+    },
+    "fluffy-egg-sourdough-melt": {
+        name: "Fluffy Egg Sourdough Melt",
+        prices: [
+            { label: "Price", amount: "₱175" },
+        ],
+        description: "Fluffy scrambled eggs with cheese on toasted sourdough.",
+        image: imageMap["fluffy-egg-sourdough-melt"],
+    },
+    "gokujo-spicy-burger-fries": {
+        name: "Gokujo Spicy Burger With Fries",
+        prices: [
+            { label: "Price", amount: "₱395"},
+        ],
+        description: "Juicy spicy burger patty with bold seasoning, served with crispy fries.",
+        image: imageMap["gokujo-spicy-burger-fries"],
+    },
+    "gyudon": {
+        name: "Gyudon",
+        prices: [
+            { label: "Price", amount: "₱265" },
+        ],
+        description: "Japanese beef bowl with sweet-savory onions over steamed rice.",
+        image: imageMap["gyudon"],
+    },
+    "pizza-bagel": {
+        name: "Pizza Bagel",
+        prices: [
+            { label: "Price", amount: "₱225" },
+        ],
+        description: "Bagel topped with marinara, melted mozzarella, and pepperoni.",
+        image: imageMap["pizza-bagel"],
+    },
+    "steak-garlic-soy-rice": {
+        name: "Steak Garlic Soy Rice",
+        prices: [
+            { label: "Price", amount: "₱890" },
+        ],
+        description: "Sear-grilled steak with garlic soy glaze over Japanese rice.",
+        image: imageMap["steak-garlic-soy-rice"],
+    },
+    "bacon-alfredo-pasta-steak": {
+        name: "Bacon Alfredo Pasta Steak",
+        prices: [
+            { label: "Price", amount: "₱990" },
+        ],
+        description: "Creamy bacon alfredo pasta topped with a perfectly seared steak.",
+        image: imageMap["bacon-alfredo-pasta-steak"],
+    },
+    "bacon-alfredo-pasta": {
+        name: "Bacon Alfredo Pasta",
+        prices: [
+          { label: "Price", amount: "₱225" },
+        ],
+        description: "Rich alfredo sauce tossed with penne pasta and smoky bacon bits.",
+        image: imageMap["bacon-alfredo-pasta"],
+    },
+    "chicken-cobb-salad-wrap": {
+        name: "Chicken Cobb Salad Wrap",
+        prices: [
+            { label: "Price", amount: "₱195" },
+        ],
+        description: "Grilled chicken, bacon, egg, and fresh greens wrapped in a soft tortilla.",
+        image: imageMap["chicken-cobb-salad-wrap"],
+    },
+    "penne-pasta-al-telefono": {
+        name: "Penne Pasta Al Telefono",
+        prices: [
+            { label: "Price", amount: "₱225" },
+        ],
+        description: "Classic penne in a vibrant tomato-basil sauce, finished with melted mozzarella.",
+        image: imageMap["penne-pasta-al-telefono"],
+    },
+    "penne-pasta-steak": {
+        name: "Penne Pasta Steak",
+        prices: [
+            { label: "Price", amount: "₱990" },
+        ],
+        description: "Hearty penne pasta in savory sauce crowned with a tender grilled steak.",
+        image: imageMap["penne-pasta-steak"],
+    },
+    "tuna-pasta-steak": {
+        name: "Tuna Pasta Steak",
+        prices: [
+            { label: "Price", amount: "₱970" },
+        ],
+        description: "Flavorful tuna pasta paired with a succulent grilled steak.",
+        image: imageMap["tuna-pasta-steak"],
+    },
+    "tuna-pasta": {
+        name: "Tuna Pasta",
+        prices: [
+            { label: "Price", amount: "₱195" },
+        ],
+        description: "Tender tuna tossed with pasta in a light, savory sauce.",
+        image: imageMap["tuna-pasta"],
     },
 };
 
