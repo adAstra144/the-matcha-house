@@ -38,7 +38,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        // your outputs are main.html-equivalents named index/menu/location/contact
+        navigateFallback: null,
         globPatterns: ['**/*.{js,css,html,png,svg,woff2}'],
       },
       manifest: {
