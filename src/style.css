@@ -49,10 +49,20 @@ header {
 header .brand {
     position: absolute;
 
+    display: flex;
+
+    gap: 10px;
+
     text-decoration: none;
     cursor: pointer;
 
     color: var(--primary);
+}
+header .brand img {
+    height: 32px;
+    width: 32px;
+
+    border-radius: 5px;
 }
 
 header .brand h1 {
