@@ -16,6 +16,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     /* BG Img with dim layer */
     background:
@@ -26,24 +27,29 @@ main {
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size:clamp(2rem, 4vw, 3rem);
+    text-align: center;
 }
 
 .hero p {
-    font-size: 1.3rem;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    text-align: center;
 }
 
 .cta {
     width: fit-content;
 
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin-top: 1.5rem;
-    padding: 0.85rem 1.75rem;
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(0.6rem, 1.5vw, 0.85rem) clamp(1.25rem, 4vw, 1.75rem);
 
     background: var(--accent);
     color: var(--text);
 
+    font-size: clamp(0.85rem, 1.5vw + 0.5rem, 1rem);
     font-weight: 700;
     text-decoration: none;
 
