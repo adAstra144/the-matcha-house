@@ -67,7 +67,7 @@ header .brand img {
 }
 
 header .brand h1 {
-    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
     align-self: center;
 }
 
