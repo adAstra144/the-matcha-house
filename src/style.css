@@ -67,7 +67,8 @@ header .brand img {
 }
 
 header .brand h1 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    align-self: center;
 }
 
 header nav {
@@ -159,5 +160,11 @@ header .burger.open span:nth-child(3) {
 
     header nav a {
         margin: 20px 0;
+    }
+}
+
+@media (max-width: 300px) {
+    header .brand h1 {
+        display: none;
     }
 }
