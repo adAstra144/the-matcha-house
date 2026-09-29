@@ -89,6 +89,10 @@ main {
     border-radius: inherit;
 }
 
+.item span {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
 .item:focus-visible,
 .modal-close:focus-visible {
     outline: 3px solid var(--accent);
