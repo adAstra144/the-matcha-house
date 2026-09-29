@@ -65,7 +65,7 @@ Pages:
 
 1. Clone the repository
    ```sh
-   git clone https://github.com/<your-username>/the-matcha-house.git
+   git clone https://github.com/adAstra144/the-matcha-house.git
    cd the-matcha-house
    ```
 2. Install dependencies
