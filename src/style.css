@@ -1,14 +1,21 @@
 :root {
-  --primary: #234A2C;
-  --secondary: #5C8A3C;
+  --primary: #1B3D24;
+  --secondary: #3D6B22;
+
+  --matcha-deep: #1A3B1F;
+  --matcha-mid: #2D5A33;
+  --matcha-pale: #E8F0E6;
 
   --bg-warm: #F5F2EC;
   --bg-soft: #E8E0D0;
 
+  --ceramic: #F5F2EC;
+  --bamboo: #A89B7A;
+
   --accent: #C47B3A;
 
   --text: #1C1C1A;
-  --text-muted: #5A5A52;
+  --text-muted: #46463E;
 
   --white: #FFFFFF;
 }
@@ -67,7 +74,7 @@ header .brand img {
 }
 
 header .brand h1 {
-    font-size: clamp(1.3rem, 3vw, 1.5rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     align-self: center;
 }
 
@@ -167,4 +174,8 @@ header .burger.open span:nth-child(3) {
     header .brand h1 {
         display: none;
     }
+}
+
+.keep-together {
+    white-space: nowrap;
 }

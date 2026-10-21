@@ -9,8 +9,10 @@ main {
 }
 
 .hero {
+    position: relative;
+    isolation: isolate;          /* keeps the z-index layering contained */
+    overflow: hidden;
     min-height: calc(100vh - 70px);
-
     padding-inline: 10%;
 
     display: flex;
@@ -18,12 +20,26 @@ main {
     justify-content: center;
     align-items: center;
 
-    /* BG Img with dim layer */
-    background:
-        linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.45)),
-        url("/src/assets/img-2.png") center / cover no-repeat;
-
+    /* Image is now the instant fallback, no gradient here */
+    background: url("/src/assets/img-2.png") center / cover no-repeat;
     color: var(--bg-warm);
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.35));
 }
 
 .hero h1 {
@@ -36,27 +52,243 @@ main {
     text-align: center;
 }
 
-.cta {
-    width: fit-content;
+.arrow {
+    position: absolute;
+    bottom: 20px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: clamp(1rem, 2vw, 1.5rem);
-    padding: clamp(0.6rem, 1.5vw, 0.85rem) clamp(1.25rem, 4vw, 1.75rem);
-
-    background: var(--accent);
-    color: var(--text);
-
-    font-size: clamp(0.85rem, 1.5vw + 0.5rem, 1rem);
-    font-weight: 700;
-    text-decoration: none;
-
-    border-radius: 999px;
-    transition: transform 0.15s ease, background 0.15s ease;
+    padding: 100px 100%;
+    margin: -100px -100%;
 }
 
-.cta:hover {
-    background: #d68a47;
+.arrow img {
+    width: 50px;
+    height: auto;
+
+    filter: invert(99%) sepia(5%) saturate(718%) hue-rotate(331deg) brightness(96%) contrast(89%);
+
+    transition: filter 0.3s ease-in-out;
+}
+
+.arrow:hover {
+    img {
+        filter: invert(56%) sepia(21%) saturate(2283%) hue-rotate(344deg) brightness(89%) contrast(85%);
+    }
+}
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+
+.about {
+    position: relative;
+    padding-block: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 5vw, 4rem);
+    background: var(--bg-soft);
+    padding-inline: 10%;
+}
+
+.about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: clamp(3rem, 8vw, 5rem);
+    align-items: start;
+}
+
+.about-copy {
+    max-width: 58ch;
+}
+
+.about-copy h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: var(--primary);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.about-lead {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.about-pull {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--primary);
+    border-left: 2px solid var(--bamboo);
+    padding-left: clamp(1rem, 2.5vw, 1.5rem);
+    margin: 0;
+    opacity: 0;
+    transform: translateY(1rem);
+    animation: pull-reveal 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+@keyframes pull-reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .about-pull {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+}
+
+.about-tools {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2rem);
+    position: sticky;
+    top: calc(70px + 2rem);
+}
+
+.tool {
+    background: var(--ceramic);
+    border: 1px solid var(--bamboo);
+    padding: clamp(1.25rem, 2.5vw, 1.5rem);
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.tool:hover {
+    border-color: var(--secondary);
+    background: var(--matcha-pale);
+}
+
+.tool-figure {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+    flex-shrink: 0;
+}
+
+.tool-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.tool-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.tool-name {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.03em;
+    margin: 0;
+}
+
+.tool-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    font-weight: 500;
+    margin: 0;
+}
+
+.tool-desc {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.about-rule {
+    border: none;
+    border-top: 1px solid var(--bamboo);
+    margin-top: clamp(4rem, 8vw, 6rem);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.5;
+}
+
+/* Tablet */
+@media (max-width: 1023px) {
+    .about-inner {
+        grid-template-columns: 1fr;
+        gap: clamp(3rem, 6vw, 4rem);
+        max-width: 600px;
+        text-align: center;
+    }
+
+    .about-copy {
+        max-width: none;
+        margin: 0 auto;
+    }
+
+    .about-pull {
+        border-left: none;
+        border-top: 2px solid var(--bamboo);
+        padding-left: 0;
+        padding-top: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .about-tools {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .tool {
+        flex: 1 1 180px;
+        max-width: 220px;
+        padding: 1.25rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .about {
+        padding-block: clamp(4rem, 10vh, 6rem) clamp(1.25rem, 4vw, 2rem);
+    }
+
+    .about-tools {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tool {
+        width: 100%;
+        max-width: 300px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+    }
+
+    .tool-figure {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 0;
+    }
+
+    .tool-content {
+        text-align: left;
+    }
+
+    .about-copy h2 {
+        text-align: center;
+    }
 }

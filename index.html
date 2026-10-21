@@ -56,12 +56,84 @@
 
     <main>
         <section class="hero">
-            <h1>Good things come in green.</h1>
+            <video class="hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true"
+                data-webm="/src/assets/videos/bg-1.webm" data-mp4="/src/assets/videos/bg-1.mp4"></video>
+
+            <h1>Good things come <span class="keep-together">in green</span>.</h1>
             <p>Discover our menu of matcha favorites.</p>
 
-            <a href="/menu" class="cta">View the menu</a>
+            <a href="#about" class="arrow">
+                <img src="/src/assets/icons/arrow-down.svg">
+            </a>
+        </section>
+
+        <section class="about" id="about" aria-labelledby="about-heading">
+            <div class="about-inner">
+                <div class="about-copy">
+                    <h2 id="about-heading">Open all day all night</h2>
+
+                    <p class="about-lead">
+                        The Matcha House never closes. Come in for matcha or coffee at any hour and stay as long as you like. 
+                        Study, work on a project, meet a friend, or just sit and think. It’s calm, it’s cozy, and it feels like home.
+                    </p>
+
+                    <blockquote class="about-pull">
+                        "Always open for your next big moment."
+                    </blockquote>
+                </div>
+
+
+                <!-- TODO: Change these cards to images -->
+                <div class="about-tools" aria-label="Matcha tools">
+                    <article class="tool" data-tool="chasen">
+                        <div class="tool-content">
+                            <h3 class="tool-name"></h3>
+                            <p class="tool-label"></p>
+                            <p class="tool-desc"></p>
+                        </div>
+                    </article>
+
+                    <article class="tool" data-tool="chawan">
+                        <div class="tool-content">
+                            <h3 class="tool-name"></h3>
+                            <p class="tool-label"></p>
+                            <p class="tool-desc"></p>
+                        </div>
+                    </article>
+
+                    <article class="tool" data-tool="chashaku">
+                        <div class="tool-content">
+                            <h3 class="tool-name"></h3>
+                            <p class="tool-label"></p>
+                            <p class="tool-desc"></p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <hr class="about-rule" aria-hidden="true">
         </section>
     </main>
 
+
+    <script>
+        window.addEventListener('load', () => {
+        const v = document.querySelector('.hero-video');
+        if (!v) return;
+
+        const skip =
+            navigator.connection?.saveData ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+            window.matchMedia('(max-width: 768px)').matches;
+
+        if (skip) { v.remove(); return; }   // image + gradient remain
+
+        v.innerHTML =
+            `<source src="${v.dataset.webm}" type="video/webm">` +
+            `<source src="${v.dataset.mp4}" type="video/mp4">`;
+        v.load();
+        v.play().catch(() => {});
+        });
+    </script>
 </body>
 </html>
