@@ -59,22 +59,3 @@ main {
     height: 100%;
     border: 0;
 }
-
-.pics {
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    gap: clamp(20px, 10vw, 60px);
-    padding: 20px;
-}
-
-.pics img {
-    width: 500px;
-    height: auto;
-
-    border-radius: 10px;
-}

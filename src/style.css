@@ -18,6 +18,9 @@
   --text-muted: #46463E;
 
   --white: #FFFFFF;
+
+  --font-header: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 }
 
 html {
@@ -27,14 +30,14 @@ html {
 
 body {
     min-height: 100vh;
-    font-family: "DM Sans", system-ui, sans-serif;
+    font-family: var(--font-body);
     text-rendering: optimizeLegibility;
 
     background-color: var(--bg-soft);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Fraunces", Georgia, serif;
+    font-family: var(--font-header);
 }
 
 header {
