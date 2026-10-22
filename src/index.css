@@ -21,7 +21,7 @@ main {
     align-items: center;
 
     /* Image is now the instant fallback, no gradient here */
-    background: url("/src/assets/img-2.png") center / cover no-repeat;
+    background: url("/src/assets/idk.png") center / cover no-repeat;
     color: var(--bg-warm);
 }
 

@@ -128,9 +128,8 @@
 
         const skip =
             navigator.connection?.saveData ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-            window.matchMedia('(max-width: 768px)').matches;
-
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+            
         if (skip) { v.remove(); return; }   // image + gradient remain
 
         v.innerHTML =
