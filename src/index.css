@@ -48,20 +48,23 @@ main {
 }
 
 .hero p {
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    font-size: clamp(1rem, 2vw, 1.2rem);
     text-align: center;
+
+    margin-bottom: 20px;
 }
 
-.arrow {
-    position: absolute;
-    bottom: 20px;
-
+.hero .arrow {    
     padding: 100px 100%;
     margin: -100px -100%;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
 }
 
-.arrow img {
-    width: 50px;
+.hero .arrow img {
+    margin: 0 auto;
+
+    width: clamp(2.4rem, 4vw, 3.1rem);
     height: auto;
 
     filter: invert(99%) sepia(5%) saturate(718%) hue-rotate(331deg) brightness(96%) contrast(89%);
@@ -234,6 +237,20 @@ main {
     margin-left: auto;
     margin-right: auto;
     opacity: 0.5;
+}
+
+.about .arrow {
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
+}
+
+.about .arrow img {
+    width: clamp(2.4rem, 4vw, 3.1rem);
+
+    height: auto;
+
+    margin: 0 auto;
+
+    transition: filter 0.3s ease-in-out;
 }
 
 /* Tablet */
