@@ -1,589 +1,276 @@
-// Dynamically import all item images so Vite handles hashing in production
+// Let Vite hash the item images; map filename (without extension) -> URL
 const imageModules = import.meta.glob('/src/assets/items/**/*.png', { eager: true })
 
-// Build a map of image path -> hashed URL
 const imageMap = {}
 for (const [path, module] of Object.entries(imageModules)) {
-  // Extract filename without extension as key (e.g., "dirty-matcha-latte")
-  const fileName = path.split('/').pop().replace(/\.png$/, '')
-  imageMap[fileName] = module.default
+    imageMap[path.split('/').pop().replace(/\.png$/, '')] = module.default
 }
 
-const menuItems = {
-    "dirty-matcha-latte": {
-        name: "Dirty Matcha Latte",
-        prices: [
-            { "label": "Regular", amount: "₱255" },
-            { "label": "Grande", amount: "₱295" },
-            { "label": "Venti", amount: "₱325" },
-        ],
-        description: "Creamy matcha balanced with a bold espresso finish.",
-        image: imageMap["dirty-matcha-latte"],
-    },
-    "earthday-matcha": {
-        name: "Earthday Matcha",
-        prices: [
-            { "label": "Regular", amount: "₱255" },
-            { "label": "Grande", amount: "₱295" },
-            { "label": "Venti", amount: "₱315" },
-        ],
-        description: "A refreshing matcha drink inspired by bright, earthy flavors.",
-        image: imageMap["earthday-matcha"],
-    },
-    "egg-matcha": {
-        name: "Egg Matcha",
-        prices: [
-            { "label": "Regular", amount: "₱235" },
-            { "label": "Grande", amount: "₱275" },
-        ],
-        description: "Velvety matcha with a rich and indulgent twist.",
-        image: imageMap["egg-matcha"],
-    },
-    "iced-matcha-coco": {
-        name: "Iced Matcha Coco",
-        prices: [
-            { "label": "Regular", amount: "₱245" },
-            { "label": "Grande", amount: "₱265" },
-            { "label": "Venti", amount: "₱295" },
-        ],
-        description: "Chilled matcha paired with smooth coconut flavor.",
-        image: imageMap["iced-matcha-coco"],
-    },
-    "london-fog-matcha": {
-        name: "London Fog Matcha",
-        prices: [
-            { "label": "Regular", amount: "₱255" },
-            { "label": "Grande", amount: "₱295" },
-            { "label": "Venti", amount: "₱305" },
-        ],
-        description: "A fragrant, creamy matcha take on the classic London Fog.",
-        image: imageMap["london-fog-matcha"],
-    },
-    "matcha-latte": {
-        name: "Matcha Latte",
-        prices: [
-            { "label": "Regular", amount: "₱235" },
-            { "label": "Grande", amount: "₱275" },
-            { "label": "Venti", amount: "₱315" },
-        ],
-        description: "A smooth, comforting blend of ceremonial-style matcha and milk.",
-        image: imageMap["matcha-latte"],
-    },
-    "matcha-lemonade": {
-        name: "Matcha Lemonade",
-        prices: [
-            { "label": "Regular", amount: "₱235" },
-            { "label": "Grande", amount: "₱255" },
-            { "label": "Venti", amount: "₱275" },
-        ],
-        description: "A bright and tangy lemonade with an earthy matcha finish.",
-        image: imageMap["matcha-lemonade"],
-    },
-    usucha: {
-        name: "Usucha",
-        prices: [
-            { "label": "Regular", amount: "₱180" },
-            { "label": "Grande", amount: "₱190" },
-            { "label": "Venti", amount: "₱230" },
-        ],
-        description: "Traditional thin matcha, whisked simply to highlight its flavor.",
-        image: imageMap["usucha"],
-    },
-    "iced-coffee-latte": {
-        name: "Iced Coffee Latte",
-        prices: [
-            { label: "Regular", amount: "₱155" },
-            { label: "Grande", amount: "₱175" },
-            { label: "Venti", amount: "₱195" },
-        ],
-        description: "A smooth espresso-and-milk classic served over ice.",
-        image: imageMap["iced-coffee-latte"],
-    },
-    "orange-espresso": {
-        name: "Orange Espresso",
-        prices: [
-            { label: "Regular", amount: "₱185" },
-            { label: "Grande", amount: "₱215" },
-            { label: "Venti", amount: "₱225" },
-        ],
-        description: "Bright citrus meets a bold espresso shot for a refreshing coffee drink.",
-        image: imageMap["orange-espresso"],
-    },
-    "baristas-drink": {
-        name: "Barista's Drink",
-        prices: [
-            { label: "Regular", amount: "₱220" },
-            { label: "Grande", amount: "₱240" },
-            { label: "Venti", amount: "₱280" },
-        ],
-        description: "A rotating coffee creation selected by the barista.",
-        image: imageMap["baristas-drink"],
-    },
-    "banana-latte": {
-        name: "Banana Latte",
-        prices: [
-            { label: "Regular", amount: "₱175" },
-            { label: "Grande", amount: "₱195" },
-            { label: "Venti", amount: "₱225" },
-        ],
-        description: "Creamy banana flavor blended with smooth coffee and milk.",
-        image: imageMap["banana-latte"],
-    },
-    "iced-spanish-latte": {
-        name: "Iced Spanish Latte",
-        prices: [
-            { label: "Regular", amount: "₱165" },
-            { label: "Grande", amount: "₱185" },
-            { label: "Venti", amount: "₱225" },
-        ],
-        description: "Espresso and milk sweetened with a rich, creamy finish over ice.",
-        image: imageMap["iced-spanish-latte"],
-    },
-    "einspanner-coffee-latte": {
-        name: "Einspanner Coffee Latte",
-        prices: [
-            { label: "Regular", amount: "₱195" },
-            { label: "Grande", amount: "₱215" },
-            { label: "Venti", amount: "₱245" },
-        ],
-        description: "A coffee latte topped with a generous layer of soft cream.",
-        image: imageMap["einspanner-coffee-latte"],
-    },
-    "iced-mocha": {
-        name: "Iced Mocha",
-        prices: [
-            { label: "Regular", amount: "₱175" },
-            { label: "Grande", amount: "₱195" },
-            { label: "Venti", amount: "₱225" },
-        ],
-        description: "Chocolate, espresso, and milk served cold for a decadent pick-me-up.",
-        image: imageMap["iced-mocha"],
-    },
-    "iced-salted-coffee": {
-        name: "Iced Salted Coffee",
-        prices: [
-            { label: "Regular", amount: "₱175" },
-            { label: "Grande", amount: "₱195" },
-            { "label": "Venti", amount: "₱215" },
-        ],
-        description: "Chilled coffee with a lightly salted, creamy finish.",
-        image: imageMap["iced-salted-coffee"],
-    },
-    "iced-americano": {
-        name: "Iced Americano",
-        prices: [
-            { label: "Regular", amount: "₱125" },
-            { label: "Grande", amount: "₱155" },
-            { label: "Venti", amount: "₱175" },
-        ],
-        description: "Bold espresso diluted with chilled water and ice.",
-        image: imageMap["iced-americano"],
-    },
-    "signature-tmh-matcha": {
-        name: "Signature TMH Matcha",
-        prices: [
-            { label: "Regular", amount: "₱265" },
-            { label: "Grande", amount: "₱295" },
-            { label: "Venti", amount: "₱335" },
-        ],
-        description: "The Matcha House's signature creamy matcha creation.",
-        image: imageMap["signature-tmh-matcha"],
-    },
-    "ube-matcha-latte": {
-        name: "Ube Matcha Latte",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱285" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "Earthy matcha paired with the mellow sweetness of ube.",
-        image: imageMap["ube-matcha-latte"],
-    },
-    "cheese-cloud-matcha": {
-        name: "Cheese Cloud Matcha",
-        prices: [
-            { label: "Regular", amount: "₱275" },
-            { label: "Grande", amount: "₱315" },
-            { label: "Venti", amount: "₱335" },
-        ],
-        description: "Smooth matcha topped with a rich, airy cheese foam.",
-        image: imageMap["cheese-cloud-matcha"],
-    },
-    "banana-pudding-matcha": {
-        name: "Banana Pudding Matcha",
-        prices: [
-            { label: "Regular", amount: "₱295" },
-            { label: "Grande", amount: "₱335" },
-            { label: "Venti", amount: "₱355" },
-        ],
-        description: "Creamy matcha inspired by the comforting flavor of banana pudding.",
-        image: imageMap["banana-pudding-matcha"],
-    },
-    "mango-matcha-latte": {
-        name: "Mango Matcha Latte",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱295" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "A bright mango twist on a smooth iced matcha latte.",
-        image: imageMap["mango-matcha-latte"],
-    },
-    "einspanner-matcha-latte": {
-        name: "Einspanner Matcha Latte",
-        prices: [
-            { label: "Regular", amount: "₱275" },
-            { label: "Grande", amount: "₱305" },
-            { label: "Venti", amount: "₱335" },
-        ],
-        description: "A creamy matcha latte finished with a generous cloud of cream.",
-        image: imageMap["einspanner-matcha-latte"],
-    },
-    "strawberry-matcha-latte": {
-        name: "Strawberry Matcha Latte",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱295" },
-            { label: "Venti", amount: "₱325" },
-        ],
-        description: "Sweet strawberry and earthy matcha layered with milk.",
-        image: imageMap["strawberry-matcha-latte"],
-    },
-    "banana-matcha": {
-        name: "Banana Matcha",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱295" },
-            { label: "Venti", amount: "₱325" },
-        ],
-        description: "A mellow, creamy banana-and-matcha blend.",
-        image: imageMap["banana-matcha"],
-    },
-    "chocolate-coconut-cloud": {
-        name: "Chocolate Coconut Cloud",
-        prices: [
-            { label: "Regular", amount: "₱155" },
-            { label: "Grande", amount: "₱185" },
-            { label: "Venti", amount: "₱205" },
-        ],
-        description: "Chocolate and coconut layered into a rich, creamy cloud drink.",
-        image: imageMap["chocolate-coconut-cloud"],
-    },
-    "coconut-matcha-cloud": {
-        name: "Coconut Matcha Cloud",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱275" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "Earthy matcha topped with a refreshing coconut cream cloud.",
-        image: imageMap["coconut-matcha-cloud"],
-    },
-    "espresso-cloud-tiramisu-latte": {
-        name: "Espresso Cloud Tiramisu Latte",
-        prices: [
-            { label: "Regular", amount: "₱205" },
-            { label: "Grande", amount: "₱235" },
-            { label: "Venti", amount: "₱265" },
-        ],
-        description: "Espresso and tiramisu-inspired flavors finished with a soft cloud topping.",
-        image: imageMap["espresso-cloud-tiramisu-latte"],
-    },
-    "espresso-coconut-cloud": {
-        name: "Espresso Coconut Cloud",
-        prices: [
-            { label: "Regular", amount: "₱195" },
-            { label: "Grande", amount: "₱205" },
-            { label: "Venti", amount: "₱225" },
-        ],
-        description: "Bold espresso balanced by a smooth coconut cream cloud.",
-        image: imageMap["espresso-coconut-cloud"],
-    },
-    "espresso-cold-foam": {
-        name: "Espresso Cold Foam",
-        prices: [
-            { label: "Regular", amount: "₱155" },
-            { label: "Grande", amount: "₱175" },
-            { label: "Venti", amount: "₱205" },
-        ],
-        description: "Iced espresso finished with a silky layer of cold foam.",
-        image: imageMap["espresso-cold-foam"],
-    },
-    "hojicha-coconut-cloud": {
-        name: "Hojicha Coconut Cloud",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱275" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "Roasty hojicha paired with a light, creamy coconut cloud.",
-        image: imageMap["hojicha-coconut-cloud"],
-    },
-    "jasmine-matcha-cloud": {
-        name: "Jasmine Matcha Cloud",
-        prices: [
-            { label: "Regular", amount: "₱255" },
-            { label: "Grande", amount: "₱275" },
-            { label: "Venti", amount: "₱305" },
-        ],
-        description: "Floral jasmine notes and matcha under a delicate cream cloud.",
-        image: imageMap["jasmine-matcha-cloud"],
-    },
-    "matcha-cloud-tiramisu-latte": {
-        name: "Matcha Cloud Tiramisu Latte",
-        prices: [
-            { label: "Regular", amount: "₱295" },
-            { label: "Grande", amount: "₱335" },
-            { label: "Venti", amount: "₱355" },
-        ],
-        description: "A creamy matcha latte with tiramisu-inspired layers and a cloud topping.",
-        image: imageMap["matcha-cloud-tiramisu-latte"],
-    },
-    "strawberry-matcha-coconut-cloud": {
-        name: "Strawberry Matcha Coconut Cloud",
-        prices: [
-            { label: "Regular", amount: "₱265" },
-            { label: "Grande", amount: "₱295" },
-            { label: "Venti", amount: "₱315" },
-        ],
-        description: "Strawberry and matcha brought together with a coconut cream cloud.",
-        image: imageMap["strawberry-matcha-coconut-cloud"],
-    },
-    "coconut-coffee": {
-        name: "Coconut Coffee",
-        prices: [
-            { label: "Regular", amount: "₱185" },
-            { label: "Grande", amount: "₱205" },
-            { label: "Venti", amount: "₱235" },
-        ],
-        description: "Vietnamese-style coffee with sweet coconut cream and condensed milk.",
-        image: imageMap["coconut-coffee"],
-    },
-    "dragon-glow-smoothie": {
-        name: "Dragon Glow Smoothie",
-        prices: [
-            { label: "Grande", amount: "₱335" },
-        ],
-        description: "A vibrant dragon fruit smoothie with a tropical glow.",
-        image: imageMap["dragon-glow-smoothie"],
-    },
-    "egg-coffee": {
-        name: "Egg Coffee",
-        prices: [
-            { label: "Regular", amount: "₱195" },
-            { label: "Grande", amount: "₱215" },
-        ],
-        description: "Classic Vietnamese egg coffee with a rich, velvety egg cream topping.",
-        image: imageMap["egg-coffee"],
-    },
-    "iced-tmh-chocolate": {
-        name: "Iced TMH Chocolate",
-        prices: [
-            { label: "Regular", amount: "₱145" },
-            { label: "Grande", amount: "₱155" },
-            { label: "Venti", amount: "₱175" },
-        ],
-        description: "Rich chocolate drink served over ice, TMH style.",
-        image: imageMap["iced-tmh-chocolate"],
-    },
-    "tmh-pink-drink": {
-        name: "TMH Pink Drink",
-        prices: [
-            { label: "Regular", amount: "₱155" },
-            { label: "Grande", amount: "₱175" },
-            { label: "Venti", amount: "₱185" },
-        ],
-        description: "A refreshing pink fruit blend with a creamy finish.",
-        image: imageMap["tmh-pink-drink"],
-    },
-    "tmh-triple-chocolate-frappe": {
-        name: "TMH Triple Chocolate Frappe",
-        prices: [
-            { label: "Grande", amount: "₱265" },
-        ],
-        description: "Triple-layered chocolate frappe blended to perfection.",
-        image: imageMap["tmh-triple-chocolate-frappe"],
-    },
-    "tra-tac": {
-        name: "Trà Tắc",
-        prices: [
-            { label: "Regular", amount: "₱155" },
-            { label: "Grande", amount: "₱185" },
-            { label: "Venti", amount: "₱205" },
-        ],
-        description: "Vietnamese kumquat tea — tart, sweet, and refreshing.",
-        image: imageMap["tra-tac"],
-    },
-    "beef-enoki": {
-        name: "Beef Enoki",
-        prices: [
-            { label: "Price", amount: "₱285" },
-        ],
-        description: "Tender beef slices with enoki mushrooms in a savory glaze.",
-        image: imageMap["beef-enoki"],
-    },
-    "cheesey-garlic-sourdough": {
-        name: "Cheesey Garlic Sourdough",
-        prices: [
-            { label: "Price", amount: "₱135" },
-        ],
-        description: "Toasted sourdough loaded with garlic butter and melted cheese.",
-        image: imageMap["cheesey-garlic-sourdough"],
-    },
-    "chicken-karaage": {
-        name: "Chicken Karaage",
-        prices: [
-            { label: "Price", amount: "₱235" },
-        ],
-        description: "Japanese-style fried chicken — crispy outside, juicy inside.",
-        image: imageMap["chicken-karaage"],
-    },
-    "chizu-bacon-fries": {
-        name: "Chizu Bacon Fries",
-        prices: [
-            { label: "Price", amount: "₱185" },
-        ],
-        description: "Crispy fries topped with cheese sauce and crispy bacon bits.",
-        image: imageMap["chizu-bacon-fries"],
-    },
-    "cream-cheese-bagel": {
-        name: "Cream Cheese Bagel",
-        prices: [
-            { label: "Price", amount: "₱195" },
-        ],
-        description: "Freshly toasted bagel with smooth, creamy cream cheese spread.",
-        image: imageMap["cream-cheese-bagel"],
-    },
-    "fluffy-egg-sourdough-melt": {
-        name: "Fluffy Egg Sourdough Melt",
-        prices: [
-            { label: "Price", amount: "₱175" },
-        ],
-        description: "Fluffy scrambled eggs with cheese on toasted sourdough.",
-        image: imageMap["fluffy-egg-sourdough-melt"],
-    },
-    "gokujo-spicy-burger-fries": {
-        name: "Gokujo Spicy Burger With Fries",
-        prices: [
-            { label: "Price", amount: "₱395"},
-        ],
-        description: "Juicy spicy burger patty with bold seasoning, served with crispy fries.",
-        image: imageMap["gokujo-spicy-burger-fries"],
-    },
-    "gyudon": {
-        name: "Gyudon",
-        prices: [
-            { label: "Price", amount: "₱265" },
-        ],
-        description: "Japanese beef bowl with sweet-savory onions over steamed rice.",
-        image: imageMap["gyudon"],
-    },
-    "pizza-bagel": {
-        name: "Pizza Bagel",
-        prices: [
-            { label: "Price", amount: "₱225" },
-        ],
-        description: "Bagel topped with marinara, melted mozzarella, and pepperoni.",
-        image: imageMap["pizza-bagel"],
-    },
-    "steak-garlic-soy-rice": {
-        name: "Steak Garlic Soy Rice",
-        prices: [
-            { label: "Price", amount: "₱890" },
-        ],
-        description: "Sear-grilled steak with garlic soy glaze over Japanese rice.",
-        image: imageMap["steak-garlic-soy-rice"],
-    },
-    "bacon-alfredo-pasta-steak": {
-        name: "Bacon Alfredo Pasta Steak",
-        prices: [
-            { label: "Price", amount: "₱990" },
-        ],
-        description: "Creamy bacon alfredo pasta topped with a perfectly seared steak.",
-        image: imageMap["bacon-alfredo-pasta-steak"],
-    },
-    "bacon-alfredo-pasta": {
-        name: "Bacon Alfredo Pasta",
-        prices: [
-          { label: "Price", amount: "₱225" },
-        ],
-        description: "Rich alfredo sauce tossed with penne pasta and smoky bacon bits.",
-        image: imageMap["bacon-alfredo-pasta"],
-    },
-    "chicken-cobb-salad-wrap": {
-        name: "Chicken Cobb Salad Wrap",
-        prices: [
-            { label: "Price", amount: "₱195" },
-        ],
-        description: "Grilled chicken, bacon, egg, and fresh greens wrapped in a soft tortilla.",
-        image: imageMap["chicken-cobb-salad-wrap"],
-    },
-    "penne-pasta-al-telefono": {
-        name: "Penne Pasta Al Telefono",
-        prices: [
-            { label: "Price", amount: "₱225" },
-        ],
-        description: "Classic penne in a vibrant tomato-basil sauce, finished with melted mozzarella.",
-        image: imageMap["penne-pasta-al-telefono"],
-    },
-    "penne-pasta-steak": {
-        name: "Penne Pasta Steak",
-        prices: [
-            { label: "Price", amount: "₱990" },
-        ],
-        description: "Hearty penne pasta in savory sauce crowned with a tender grilled steak.",
-        image: imageMap["penne-pasta-steak"],
-    },
-    "tuna-pasta-steak": {
-        name: "Tuna Pasta Steak",
-        prices: [
-            { label: "Price", amount: "₱970" },
-        ],
-        description: "Flavorful tuna pasta paired with a succulent grilled steak.",
-        image: imageMap["tuna-pasta-steak"],
-    },
-    "tuna-pasta": {
-        name: "Tuna Pasta",
-        prices: [
-            { label: "Price", amount: "₱195" },
-        ],
-        description: "Tender tuna tossed with pasta in a light, savory sauce.",
-        image: imageMap["tuna-pasta"],
-    },
-};
+/* ---------- Menu data (single source of truth) ---------- */
 
-const dialog = document.querySelector(".item-modal");
-const closeButton = document.querySelector(".modal-close");
-const modalImage = document.querySelector(".modal-image");
-const modalName = document.querySelector("#modal-name");
-const modalPrices = document.querySelector(".modal-prices");
-const modalDescription = document.querySelector(".modal-description");
+// Price helpers. Keys become the labels shown in the modal.
+const sized = (regular, grande, venti) => ({
+    Regular: regular,
+    Grande: grande,
+    ...(venti && { Venti: venti }),
+})
+const grandeOnly = (amount) => ({ Grande: amount })
+const single = (amount) => ({ Price: amount })
 
-document.querySelectorAll(".item").forEach((button) => {
-    button.addEventListener("click", () => {
-        const item = menuItems[button.dataset.item];
+// item(id, name, prices, description). `id` must match the image filename.
+const item = (id, name, prices, description) => ({ id, name, prices, description })
 
-        modalImage.src = item.image;
-        modalImage.alt = item.name;
-        modalName.textContent = item.name;
-        modalPrices.innerHTML = item.prices
-            .map((price) => `
-                <div class="modal-price">
-                    <span>${price.label}</span>
-                    <strong>${price.amount}</strong>
-                </div>
-            `)
-            .join("");
-      modalDescription.textContent = item.description;
+const categories = [
+    {
+        id: 'matcha-series',
+        title: 'Matcha Series Drinks',
+        items: [
+            item('dirty-matcha-latte', 'Dirty Matcha Latte', sized(255, 295, 325), 'Creamy matcha balanced with a bold espresso finish.'),
+            item('earthday-matcha', 'Earthday Matcha', sized(255, 295, 315), 'A refreshing matcha drink inspired by bright, earthy flavors.'),
+            item('egg-matcha', 'Egg Matcha', sized(235, 275), 'Velvety matcha with a rich and indulgent twist.'),
+            item('iced-matcha-coco', 'Iced Matcha Coco', sized(245, 265, 295), 'Chilled matcha paired with smooth coconut flavor.'),
+            item('london-fog-matcha', 'London Fog Matcha', sized(255, 295, 305), 'A fragrant, creamy matcha take on the classic London Fog.'),
+            item('matcha-latte', 'Matcha Latte', sized(235, 275, 315), 'A smooth, comforting blend of ceremonial-style matcha and milk.'),
+            item('matcha-lemonade', 'Matcha Lemonade', sized(235, 255, 275), 'A bright and tangy lemonade with an earthy matcha finish.'),
+            item('usucha', 'Usucha', sized(180, 190, 230), 'Traditional thin matcha, whisked simply to highlight its flavor.'),
+        ],
+    },
+    {
+        id: 'signature-coffee',
+        title: 'Signature Coffee Series',
+        items: [
+            item('iced-coffee-latte', 'Iced Coffee Latte', sized(155, 175, 195), 'A smooth espresso-and-milk classic served over ice.'),
+            item('orange-espresso', 'Orange Espresso', sized(185, 215, 225), 'Bright citrus meets a bold espresso shot for a refreshing coffee drink.'),
+            item('baristas-drink', "Barista's Drink", sized(220, 240, 280), 'A rotating coffee creation selected by the barista.'),
+            item('banana-latte', 'Banana Latte', sized(175, 195, 225), 'Creamy banana flavor blended with smooth coffee and milk.'),
+            item('iced-spanish-latte', 'Iced Spanish Latte', sized(165, 185, 225), 'Espresso and milk sweetened with a rich, creamy finish over ice.'),
+            item('einspanner-coffee-latte', 'Einspanner Coffee Latte', sized(195, 215, 245), 'A coffee latte topped with a generous layer of soft cream.'),
+            item('iced-mocha', 'Iced Mocha', sized(175, 195, 225), 'Chocolate, espresso, and milk served cold for a decadent pick-me-up.'),
+            item('iced-salted-coffee', 'Iced Salted Coffee', sized(175, 195, 215), 'Chilled coffee with a lightly salted, creamy finish.'),
+            item('iced-americano', 'Iced Americano', sized(125, 155, 175), 'Bold espresso diluted with chilled water and ice.'),
+        ],
+    },
+    {
+        id: 'signature-matcha',
+        title: 'Signature Matcha Drinks',
+        items: [
+            item('signature-tmh-matcha', 'Signature TMH Matcha', sized(265, 295, 335), "The Matcha House's signature creamy matcha creation."),
+            item('ube-matcha-latte', 'Ube Matcha Latte', sized(255, 285, 305), 'Earthy matcha paired with the mellow sweetness of ube.'),
+            item('cheese-cloud-matcha', 'Cheese Cloud Matcha', sized(275, 315, 335), 'Smooth matcha topped with a rich, airy cheese foam.'),
+            item('banana-pudding-matcha', 'Banana Pudding Matcha', sized(295, 335, 355), 'Creamy matcha inspired by the comforting flavor of banana pudding.'),
+            item('mango-matcha-latte', 'Mango Matcha Latte', sized(255, 295, 305), 'A bright mango twist on a smooth iced matcha latte.'),
+            item('einspanner-matcha-latte', 'Einspanner Matcha Latte', sized(275, 305, 335), 'A creamy matcha latte finished with a generous cloud of cream.'),
+            item('strawberry-matcha-latte', 'Strawberry Matcha Latte', sized(255, 295, 325), 'Sweet strawberry and earthy matcha layered with milk.'),
+            item('banana-matcha', 'Banana Matcha', sized(255, 295, 325), 'A mellow, creamy banana-and-matcha blend.'),
+        ],
+    },
+    {
+        id: 'cloud-series',
+        title: 'Cloud Series',
+        items: [
+            item('chocolate-coconut-cloud', 'Chocolate Coconut Cloud', sized(155, 185, 205), 'Chocolate and coconut layered into a rich, creamy cloud drink.'),
+            item('coconut-matcha-cloud', 'Coconut Matcha Cloud', sized(255, 275, 305), 'Earthy matcha topped with a refreshing coconut cream cloud.'),
+            item('espresso-cloud-tiramisu-latte', 'Espresso Cloud Tiramisu Latte', sized(205, 235, 265), 'Espresso and tiramisu-inspired flavors finished with a soft cloud topping.'),
+            item('espresso-coconut-cloud', 'Espresso Coconut Cloud', sized(195, 205, 225), 'Bold espresso balanced by a smooth coconut cream cloud.'),
+            item('espresso-cold-foam', 'Espresso Cold Foam', sized(155, 175, 205), 'Iced espresso finished with a silky layer of cold foam.'),
+            item('hojicha-coconut-cloud', 'Hojicha Coconut Cloud', sized(255, 275, 305), 'Roasty hojicha paired with a light, creamy coconut cloud.'),
+            item('jasmine-matcha-cloud', 'Jasmine Matcha Cloud', sized(255, 275, 305), 'Floral jasmine notes and matcha under a delicate cream cloud.'),
+            item('matcha-cloud-tiramisu-latte', 'Matcha Cloud Tiramisu Latte', sized(295, 335, 355), 'A creamy matcha latte with tiramisu-inspired layers and a cloud topping.'),
+            item('strawberry-matcha-coconut-cloud', 'Strawberry Matcha Coconut Cloud', sized(265, 295, 315), 'Strawberry and matcha brought together with a coconut cream cloud.'),
+        ],
+    },
+    {
+        id: 'vietnam-series',
+        title: 'Vietnam Series',
+        items: [
+            item('coconut-coffee', 'Coconut Coffee', sized(185, 205, 235), 'Vietnamese-style coffee with sweet coconut cream and condensed milk.'),
+            item('dragon-glow-smoothie', 'Dragon Glow Smoothie', grandeOnly(335), 'A vibrant dragon fruit smoothie with a tropical glow.'),
+            item('egg-coffee', 'Egg Coffee', sized(195, 215), 'Classic Vietnamese egg coffee with a rich, velvety egg cream topping.'),
+            item('iced-tmh-chocolate', 'Iced TMH Chocolate', sized(145, 155, 175), 'Rich chocolate drink served over ice, TMH style.'),
+            item('tmh-pink-drink', 'TMH Pink Drink', sized(155, 175, 185), 'A refreshing pink fruit blend with a creamy finish.'),
+            item('tmh-triple-chocolate-frappe', 'TMH Triple Chocolate Frappe', grandeOnly(265), 'Triple-layered chocolate frappe blended to perfection.'),
+            item('tra-tac', 'Trà Tắc', sized(155, 185, 205), 'Vietnamese kumquat tea — tart, sweet, and refreshing.'),
+        ],
+    },
+    {
+        id: 'comfort-food',
+        title: 'Your Comfort on a Plate',
+        items: [
+            item('beef-enoki', 'Beef Enoki', single(285), 'Tender beef slices with enoki mushrooms in a savory glaze.'),
+            item('cheesey-garlic-sourdough', 'Cheesey Garlic Sourdough', single(135), 'Toasted sourdough loaded with garlic butter and melted cheese.'),
+            item('chicken-karaage', 'Chicken Karaage', single(235), 'Japanese-style fried chicken — crispy outside, juicy inside.'),
+            item('chizu-bacon-fries', 'Chizu Bacon Fries', single(185), 'Crispy fries topped with cheese sauce and crispy bacon bits.'),
+            item('cream-cheese-bagel', 'Cream Cheese Bagel', single(195), 'Freshly toasted bagel with smooth, creamy cream cheese spread.'),
+            item('fluffy-egg-sourdough-melt', 'Fluffy Egg Sourdough Melt', single(175), 'Fluffy scrambled eggs with cheese on toasted sourdough.'),
+            item('gokujo-spicy-burger-fries', 'Gokujo Spicy Burger w/ Fries', single(395), 'Juicy spicy burger patty with bold seasoning, served with crispy fries.'),
+            item('gyudon', 'Gyudon', single(265), 'Japanese beef bowl with sweet-savory onions over steamed rice.'),
+            item('pizza-bagel', 'Pizza Bagel', single(225), 'Bagel topped with marinara, melted mozzarella, and pepperoni.'),
+            item('steak-garlic-soy-rice', 'Steak Garlic Soy Rice', single(890), 'Sear-grilled steak with garlic soy glaze over Japanese rice.'),
+        ],
+    },
+    {
+        id: 'pasta-salad',
+        title: 'Pasta and Salad',
+        items: [
+            item('bacon-alfredo-pasta-steak', 'Bacon Alfredo Pasta w/ Steak', single(990), 'Creamy bacon alfredo pasta topped with a perfectly seared steak.'),
+            item('bacon-alfredo-pasta', 'Bacon Alfredo Pasta', single(225), 'Rich alfredo sauce tossed with penne pasta and smoky bacon bits.'),
+            item('chicken-cobb-salad-wrap', 'Chicken Cobb Salad Wrap', single(195), 'Grilled chicken, bacon, egg, and fresh greens wrapped in a soft tortilla.'),
+            item('penne-pasta-al-telefono', 'Penne Pasta Al Telefono', single(225), 'Classic penne in a vibrant tomato-basil sauce, finished with melted mozzarella.'),
+            item('penne-pasta-steak', 'Penne Pasta w/ Steak', single(990), 'Hearty penne pasta in savory sauce crowned with a tender grilled steak.'),
+            item('tuna-pasta-steak', 'Tuna Pasta w/ Steak', single(970), 'Flavorful tuna pasta paired with a succulent grilled steak.'),
+            item('tuna-pasta', 'Tuna Pasta', single(195), 'Tender tuna tossed with pasta in a light, savory sauce.'),
+        ],
+    },
+]
 
-        dialog.showModal();
-    });
-});
+const itemsById = Object.fromEntries(
+    categories.flatMap((category) => category.items).map((menuItem) => [menuItem.id, menuItem])
+)
 
-closeButton.addEventListener("click", () => dialog.close());
+/* ---------- Render grid + sidebar from data ---------- */
 
-dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) {
-        dialog.close();
+const sidebarList = document.querySelector('.sidebar-list')
+const menuContent = document.querySelector('.menu-content')
+
+sidebarList.innerHTML = categories
+    .map((c) => `<li><a href="#${c.id}" class="sidebar-link">${c.title}</a></li>`)
+    .join('')
+
+menuContent.innerHTML = categories
+    .map((c) => `
+        <h2 id="${c.id}">${c.title}</h2>
+        <div class="item-container">
+            ${c.items.map(renderItem).join('')}
+        </div>
+    `)
+    .join('')
+
+function renderItem(menuItem) {
+    if (!imageMap[menuItem.id]) {
+        console.warn(`No image found for menu item "${menuItem.id}"`)
     }
-});
+    // alt is empty on purpose: the visible name already labels the button
+    return `
+        <button type="button" data-item="${menuItem.id}" class="item" aria-label="View ${menuItem.name} details">
+            <img loading="lazy" src="${imageMap[menuItem.id] ?? ''}" alt="">
+            <span>${menuItem.name}</span>
+        </button>
+    `
+}
+
+/* ---------- Item modal ---------- */
+
+const dialog = document.querySelector('.item-modal')
+const closeButton = document.querySelector('.modal-close')
+const modalImage = document.querySelector('.modal-image')
+const modalName = document.querySelector('#modal-name')
+const modalPrices = document.querySelector('.modal-prices')
+const modalDescription = document.querySelector('.modal-description')
+
+function openModal(menuItem) {
+    modalImage.src = imageMap[menuItem.id] ?? ''
+    modalImage.alt = menuItem.name
+    modalName.textContent = menuItem.name
+    modalDescription.textContent = menuItem.description
+
+    modalPrices.replaceChildren(
+        ...Object.entries(menuItem.prices).map(([label, amount]) => {
+            const row = document.createElement('div')
+            row.className = 'modal-price'
+
+            const labelEl = document.createElement('span')
+            labelEl.textContent = label
+
+            const amountEl = document.createElement('strong')
+            amountEl.textContent = `₱${amount}`
+
+            row.append(labelEl, amountEl)
+            return row
+        })
+    )
+
+    dialog.showModal()
+}
+
+menuContent.addEventListener('click', (event) => {
+    const button = event.target.closest('.item')
+    if (button) openModal(itemsById[button.dataset.item])
+})
+
+closeButton.addEventListener('click', () => dialog.close())
+
+// Clicking the backdrop (the dialog element itself) closes it
+dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close()
+})
+
+/* ---------- Sidebar drawer (tablet) ---------- */
+
+const sidebar = document.querySelector('.menu-sidebar')
+const toggleBtn = document.querySelector('.sidebar-toggle')
+const backdrop = document.querySelector('.sidebar-backdrop')
+const drawerQuery = window.matchMedia('(max-width: 1023px)')
+const chipsQuery = window.matchMedia('(max-width: 640px)')
+
+function setDrawer(open) {
+    sidebar.classList.toggle('open', open)
+    backdrop.classList.toggle('open', open)
+    toggleBtn.setAttribute('aria-expanded', String(open))
+}
+
+toggleBtn.addEventListener('click', () => setDrawer(!sidebar.classList.contains('open')))
+backdrop.addEventListener('click', () => setDrawer(false))
+sidebarList.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setDrawer(false)
+})
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setDrawer(false)
+})
+drawerQuery.addEventListener('change', (event) => {
+    if (!event.matches) setDrawer(false)
+})
+
+/* ---------- Scroll-spy: highlight the current category ---------- */
+
+const sidebarLinks = [...document.querySelectorAll('.sidebar-link')]
+const headings = [...document.querySelectorAll('.menu-content h2[id]')]
+let activeId = null
+let ticking = false
+
+function updateActive() {
+    ticking = false
+
+    // Same offset the headings use for scroll-margin-top, plus a little slack
+    const offset = parseInt(getComputedStyle(headings[0]).scrollMarginTop, 10) + 10
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2
+
+    let current = headings[0]
+    for (const heading of headings) {
+        if (heading.getBoundingClientRect().top <= offset) current = heading
+    }
+    if (atBottom) current = headings[headings.length - 1]
+
+    if (current.id === activeId) return
+    activeId = current.id
+
+    for (const link of sidebarLinks) {
+        const isActive = link.getAttribute('href') === `#${activeId}`
+        link.classList.toggle('active', isActive)
+        if (isActive) link.setAttribute('aria-current', 'location')
+        else link.removeAttribute('aria-current')
+
+        // Keep the active chip visible in the horizontal mobile bar
+        if (isActive && chipsQuery.matches) {
+            link.scrollIntoView({ inline: 'center', block: 'nearest' })
+        }
+    }
+}
+
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        ticking = true
+        requestAnimationFrame(updateActive)
+    }
+}, { passive: true })
+window.addEventListener('resize', updateActive)
+updateActive()
