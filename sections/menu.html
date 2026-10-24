@@ -77,6 +77,16 @@
             <div class="modal-details">
                 <h2 id="modal-name"></h2>
                 <div class="modal-prices"></div>
+                <div class="modal-sizes" role="radiogroup" aria-label="Size"></div>
+                <p class="modal-description"></p>
+                <div class="modal-actions">
+                    <div class="modal-qty" role="group" aria-label="Quantity">
+                        <button type="button" class="qty-btn" data-action="dec" aria-label="Decrease quantity">−</button>
+                        <span class="qty-value" aria-live="polite">1</span>
+                        <button type="button" class="qty-btn" data-action="inc" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button type="button" class="btn-primary modal-add">Add to Cart</button>
+                </div>
                 <p class="modal-description"></p>
             </div>
         </div>

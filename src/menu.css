@@ -483,3 +483,130 @@ main {
         transition: none;
     }
 }
+
+.item-card { 
+    width: clamp(80px, 22vw, 150px); 
+    
+    position: relative; 
+}
+
+.item-card .item {
+    width: 100%; 
+}
+
+.quick-add {
+    width: 34px; 
+    height: 34px;
+    
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    
+    border: 0; 
+    border-radius: 50%; 
+    
+    background: var(--primary); 
+    color: var(--bg-warm);
+    
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    
+    font-size: 1.4rem; 
+    line-height: 1; 
+    
+    cursor: pointer; 
+}
+
+.quick-add:disabled { 
+    opacity: 0.6; 
+}
+
+.quick-add:focus-visible { 
+    outline: 3px solid var(--accent); 
+    outline-offset: 2px; 
+}
+
+@media (max-width: 640px) { 
+    .item-card { 
+        width: 100%; 
+    } 
+}
+
+.modal-prices[hidden], .modal-sizes[hidden] { 
+    display: none; 
+}
+
+.modal-sizes { 
+    display: flex; 
+    flex-direction: column; 
+    
+    gap: 8px; 
+    margin-top: 12px; 
+}
+
+.modal-sizes label { 
+    display: flex; 
+    align-items: center; 
+    
+    gap: 8px; 
+    
+    cursor: pointer; 
+}
+
+.modal-sizes input { 
+    accent-color: var(--primary); 
+}
+
+.modal-actions { display: flex; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    
+    gap: 16px; 
+    margin-top: 20px; 
+}
+
+.modal-qty { 
+    display: flex; 
+    align-items: center; 
+    
+    gap: 10px; 
+}
+
+.qty-btn {
+    width: 36px; 
+    height: 36px; 
+    
+    border: 1px solid var(--bamboo); 
+    border-radius: 50%;
+    
+    background: var(--bg-soft); 
+    
+    font-size: 1.2rem; 
+    
+    cursor: pointer;
+}
+
+.qty-value { 
+    min-width: 2ch; 
+    
+    text-align: center; 
+    font-weight: 700; 
+}
+
+.modal-add {
+    flex: 1; 
+    
+    padding: 0.8rem 1.4rem; 
+    
+    border: 0; 
+    border-radius: 6px;
+    
+    background: var(--primary); 
+    color: #fff; 
+    
+    cursor: pointer;
+}
+
+.qty-btn:focus-visible, .modal-add:focus-visible, .modal-sizes input:focus-visible {
+    outline: 3px solid var(--accent); 
+    outline-offset: 2px;
+}

@@ -1,14 +1,20 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import { qrcode } from 'vite-plugin-qrcode'
 
 const routes = {
   '/menu': '/sections/menu.html',
   '/location': '/sections/location.html',
   '/contact': '/sections/contact.html',
+  '/cart': '/sections/cart.html',
 }
 
 export default defineConfig({
+  // Exposes the dev server on your local network so the QR code works
+  server: {
+    host: true, 
+  },
   build: {
     rollupOptions: {
       input: {
@@ -16,10 +22,12 @@ export default defineConfig({
         menu: resolve(import.meta.dirname, 'sections/menu.html'),
         location: resolve(import.meta.dirname, 'sections/location.html'),
         contact: resolve(import.meta.dirname, 'sections/contact.html'),
+        cart: resolve(import.meta.dirname, 'sections/cart.html'),
       },
     },
   },
   plugins: [
+    qrcode(), // Generates the QR code in your terminal
     {
       name: 'dev-rewrites',
       configureServer(server) {

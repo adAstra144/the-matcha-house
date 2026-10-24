@@ -1,3 +1,5 @@
+import './cart-ui.js'
+
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('#site-nav');
 

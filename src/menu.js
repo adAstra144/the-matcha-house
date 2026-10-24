@@ -1,3 +1,6 @@
+import { add } from './cart.js'
+import { showToast } from './cart-ui.js'
+
 // Let Vite hash the item images; map filename (without extension) -> URL
 const imageModules = import.meta.glob('/src/assets/items/**/*.png', { eager: true })
 
@@ -151,48 +154,112 @@ function renderItem(menuItem) {
     }
     // alt is empty on purpose: the visible name already labels the button
     return `
-        <button type="button" data-item="${menuItem.id}" class="item" aria-label="View ${menuItem.name} details">
-            <img loading="lazy" src="${imageMap[menuItem.id] ?? ''}" alt="">
-            <span>${menuItem.name}</span>
-        </button>
+        <div class="item-card">
+            <button type="button" data-item="${menuItem.id}" class="item" aria-label="View ${menuItem.name} details">
+                <img loading="lazy" src="${imageMap[menuItem.id] ?? ''}" alt="">
+                <span>${menuItem.name}</span>
+            </button>
+            <button type="button" class="quick-add" data-item="${menuItem.id}" aria-label="Add ${menuItem.name} to cart">+</button>
+        </div>
     `
 }
-
-/* ---------- Item modal ---------- */
 
 const dialog = document.querySelector('.item-modal')
 const closeButton = document.querySelector('.modal-close')
 const modalImage = document.querySelector('.modal-image')
 const modalName = document.querySelector('#modal-name')
 const modalPrices = document.querySelector('.modal-prices')
+const modalSizes = document.querySelector('.modal-sizes')
 const modalDescription = document.querySelector('.modal-description')
+const qtyValue = document.querySelector('.qty-value')
+const addButton = document.querySelector('.modal-add')
+
+let currentItem = null
+let quantity = 1
+
+const toCartItem = (menuItem, size) => ({
+    id: menuItem.id,
+    name: menuItem.name,
+    size,
+    price: menuItem.prices[size],
+    image: imageMap[menuItem.id] ?? '',
+})
+
+function setQuantity(n) {
+    quantity = Math.min(99, Math.max(1, n))
+    qtyValue.textContent = quantity
+}
 
 function openModal(menuItem) {
+    currentItem = menuItem
+    setQuantity(1)
+
     modalImage.src = imageMap[menuItem.id] ?? ''
     modalImage.alt = menuItem.name
     modalName.textContent = menuItem.name
     modalDescription.textContent = menuItem.description
 
+    const entries = Object.entries(menuItem.prices)
+    const multiple = entries.length > 1
+
+    // One price: show it as before. Several: show a size picker with prices.
+    modalPrices.hidden = multiple
+    modalSizes.hidden = !multiple
+
     modalPrices.replaceChildren(
-        ...Object.entries(menuItem.prices).map(([label, amount]) => {
+        ...entries.map(([label, amount]) => {
             const row = document.createElement('div')
             row.className = 'modal-price'
-
             const labelEl = document.createElement('span')
             labelEl.textContent = label
-
             const amountEl = document.createElement('strong')
             amountEl.textContent = `₱${amount}`
-
             row.append(labelEl, amountEl)
             return row
+        })
+    )
+
+    modalSizes.replaceChildren(
+        ...entries.map(([label, amount], index) => {
+            const wrap = document.createElement('label')
+            const input = document.createElement('input')
+            input.type = 'radio'
+            input.name = 'size'
+            input.value = label
+            input.checked = index === 0
+            wrap.append(input, ` ${label} — ₱${amount}`)
+            return wrap
         })
     )
 
     dialog.showModal()
 }
 
+document.querySelector('.modal-qty').addEventListener('click', (event) => {
+    const btn = event.target.closest('[data-action]')
+    if (btn) setQuantity(quantity + (btn.dataset.action === 'inc' ? 1 : -1))
+})
+
+addButton.addEventListener('click', () => {
+    const size = modalSizes.querySelector('input:checked')?.value ?? Object.keys(currentItem.prices)[0]
+    add(toCartItem(currentItem, size), quantity)
+    dialog.close()
+    showToast('Added to cart')
+})
+
+function quickAdd(button) {
+    const menuItem = itemsById[button.dataset.item]
+    const [size] = Object.keys(menuItem.prices) // smallest size is listed first
+    add(toCartItem(menuItem, size), 1)
+    showToast('Added to cart')
+    button.disabled = true
+    setTimeout(() => { button.disabled = false }, 400)
+}
+
 menuContent.addEventListener('click', (event) => {
+    const quick = event.target.closest('.quick-add')
+    if (quick) return quickAdd(quick)
+
     const button = event.target.closest('.item')
     if (button) openModal(itemsById[button.dataset.item])
 })

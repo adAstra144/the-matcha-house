@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TMH - Your Order</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/reset.css">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/cart.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script type="module" src="/src/script.js"></script>
+    <script type="module" src="/src/cart-page.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">
+            <img src="/src/assets/brand.jpg" alt="TMH Logo">
+            <h1>The Matcha House</h1>
+        </a>
+
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="site-nav">
+            <a href="/"><span>Home</span></a>
+            <a href="/menu"><span>Menu</span></a>
+            <a href="/location"><span>Location</span></a>
+            <a href="/contact"><span>Contact</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cart">
+            <h1 class="cart-title" tabindex="-1">Your Order</h1>
+            <!-- Filled by cart-page.js -->
+            <div id="cart-root"></div>
+        </section>
+    </main>
+
+    <dialog class="order-modal" aria-labelledby="order-modal-title">
+        <h2 id="order-modal-title">Order placed!</h2>
+        <p>Thanks for ordering at The Matcha House. Payment isn't set up yet, so this was a demo order.</p>
+        <a class="btn-primary" href="/menu">Back to menu</a>
+    </dialog>
+
+</body>
+</html>
