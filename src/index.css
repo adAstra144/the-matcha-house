@@ -241,7 +241,10 @@ main {
 
 .reviews {
     width: 80%;
+    height: auto;
+
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 .reviews .arrow {
@@ -250,7 +253,6 @@ main {
 
 .reviews .arrow img {
     width: clamp(2.4rem, 4vw, 3.1rem);
-
     height: auto;
 
     margin: 0 auto;

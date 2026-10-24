@@ -150,7 +150,8 @@ main {
 }
 
 /* ---------- Tablet / mobile: stack ---------- */
-@media (max-width: 1023px) {
+@media (max-width: 1400px) {
+
     .contact-inner {
         grid-template-columns: 1fr;
         max-width: 640px;
@@ -165,5 +166,13 @@ main {
     .contact-list div {
         grid-template-columns: 7rem 1fr;
         gap: .75rem;
+    }
+
+    .ig-widget {
+        display: inline;
+
+        width: 80%;
+        
+        margin: 20px auto;
     }
 }

@@ -142,55 +142,6 @@
         hour: "numeric", minute: "2-digit", timeZone: "Asia/Manila"
         }).format(new Date());
         document.getElementById("open-now").textContent = `Open right now · ${t}`;
-
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const heroText = document.querySelectorAll('.hero h1, .hero p');
-        const items = document.querySelectorAll(
-            '.about-copy h2, .about-lead, .about-pull, .visit-status, ' +
-            '.visit-facts div, .visit-actions, .photos .card'
-        );
-
-        const clamp = n => Math.min(1, Math.max(0, n));
-        let ticking = false;
-
-        function update() {
-            const h = window.innerHeight;
-
-            // Hero fades and drifts up as you scroll away
-            const heroP = clamp(window.scrollY / (h * 0.6));
-            heroText.forEach(el => {
-                el.style.opacity = 1 - heroP;
-                el.style.transform = `translateY(${heroP * -24}px)`;
-            });
-
-            // Everything else reveals as it rises into view
-            items.forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                const p = clamp((h - top) / (h * 0.22));
-
-                el.style.opacity = p;
-
-                if (el.classList.contains('card')) {
-                    el.style.clipPath = `inset(0 0 ${(1 - p) * 100}% 0)`;
-                } else {
-                    el.style.transform = `translateY(${(1 - p) * 40}px)`;
-                }
-            });
-
-            ticking = false;
-        }
-
-        function onScroll() {
-            if (!ticking) {
-                ticking = true;
-                requestAnimationFrame(update);
-            }
-        }
-
-        addEventListener('scroll', onScroll, { passive: true });
-        addEventListener('resize', onScroll);
-        update();
-    }
     </script>
 </body>
 </html>
