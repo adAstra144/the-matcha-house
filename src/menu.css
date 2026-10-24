@@ -294,20 +294,24 @@ main {
 /* ---------- Tablet: collapsible drawer ---------- */
 @media (max-width: 1023px) {
     .menu-title {
-        padding-inline: 16px;
+        padding-inline: 10px;
     }
 
     .menu-layout {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
         padding: 16px;
-        gap: 1rem;
     }
 
     .sidebar-toggle {
         display: flex;
         align-items: center;
         gap: 8px;
-        align-self: flex-start;
+
+        grid-area: 1 / 1;
+        justify-self: end;
+        align-self: start;
+        margin-top: 0.6rem;
 
         position: sticky;
         top: 80px;
@@ -321,6 +325,15 @@ main {
         font-size: 0.9rem;
         font-weight: 500;
         cursor: pointer;
+    }
+
+    .menu-content {
+        grid-area: 1 / 1;
+    }
+
+    /* keep the first heading's text clear of the button */
+    .menu-content h2:first-of-type {
+        padding-right: 9rem;
     }
 
     .menu-sidebar {
@@ -375,12 +388,18 @@ main {
     }
 
     .menu-title {
-        padding: 24px 0 10px;
+        padding: 24px 10px 10px;
     }
 
     .menu-layout {
+        display: flex;
+        flex-direction: column;
         padding: 0 16px 24px;
         gap: 0;
+    }
+
+    .menu-content h2:first-of-type {
+        padding-right: 0;
     }
 
     .menu-content h2 {

@@ -239,11 +239,16 @@ main {
     opacity: 0.5;
 }
 
-.about .arrow {
+.reviews {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.reviews .arrow {
     font-size: clamp(0.9rem, 1vw, 1.1rem);
 }
 
-.about .arrow img {
+.reviews .arrow img {
     width: clamp(2.4rem, 4vw, 3.1rem);
 
     height: auto;
