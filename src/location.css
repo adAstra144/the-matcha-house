@@ -8,54 +8,190 @@ main {
     width: 100%;
 }
 
-.intro {
-    height: 30vh;
-    min-height: 300px;
-    max-height: 500px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    background:
-        linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.35)),
-        url("/src/assets/img-1.png") center / cover no-repeat;
-
-    background-position: center 30%;
-
-    color: var(--bg-warm);
-}
-
-.intro h1 {
-    font-size: clamp(1.6rem, 5vw, 2.1rem);
-}
-
+/* ---------- Layout ---------- */
 .location {
-    height: calc(100dvh - 70px);
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 40px;
-    gap: 40px;
+    padding: clamp(2rem, 6vw, 4rem) 10%;
 }
 
-.gmaps {
-    width: 100%;
-    max-width: 800px;
-    aspect-ratio: 16 / 10;
+.location-inner {
+    max-width: 1200px;
     margin: 0 auto;
 
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: start;
+}
+
+.location-info h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--primary);
+
+    margin-bottom: 1.25rem;
+}
+
+/* ---------- Status + facts (same look as the home page) ---------- */
+.visit-status {
     display: flex;
-    flex-direction: column;
     align-items: center;
+
+    gap: .6rem;
+
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.visit-dot {
+    width: .6rem;
+    height: .6rem;
+
+    border-radius: 50%;
+
+    background: var(--secondary);
+}
+
+.visit-facts {
+    margin: 1.5rem 0 2rem;
+}
+
+.visit-facts div {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+
+    gap: 1rem;
+    padding: .85rem 0;
+
+    border-top: 1px solid var(--bamboo);
+}
+
+.visit-facts div:last-child {
+    border-bottom: 1px solid var(--bamboo);
+}
+
+.visit-facts dt {
+    color: var(--text-muted);
+}
+
+.visit-facts dd {
+    margin: 0;
+    font-family: var(--font-header);
+}
+
+/* ---------- Actions ---------- */
+.visit-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 1rem 1.5rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: .8rem 1.4rem;
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    color: #fff;
+    background: var(--primary);
+
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--secondary);
+}
+
+.btn-link {
+    padding: 0;
+
+    border: 0;
+    background: none;
+
+    color: var(--accent);
+    font: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    cursor: pointer;
+}
+
+.btn-primary:focus-visible,
+.btn-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Storefront photo ---------- */
+.storefront {
+    margin-top: 2.5rem;
+
+    border: 15px solid var(--bg-warm);
+    border-radius: 5px;
+    background: var(--bg-warm);
+}
+
+.storefront img {
+    width: 100%;
+    height: auto;
+}
+
+.storefront figcaption {
+    padding-top: 12px;
+
+    text-align: center;
+    font-family: var(--font-header);
+    font-size: 1.2rem;
+    color: var(--text);
+}
+
+/* ---------- Map ---------- */
+.gmaps {
+    position: sticky;
+    top: calc(70px + 2rem);
+
+    height: calc(100dvh - 150px - 4rem);
+    min-height: 420px;
+
+    border: 1px solid var(--bamboo);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-warm);
 }
 
 .gmaps iframe {
     width: 100%;
     height: 100%;
     border: 0;
+
+    /* Pulls the default blue map toward the site's greens */
+    filter: sepia(0.35) hue-rotate(60deg) saturate(0.8) contrast(0.95);
+}
+
+/* ---------- Tablet / mobile: stack ---------- */
+@media (max-width: 1023px) {
+    .location-inner {
+        grid-template-columns: 1fr;
+        max-width: 640px;
+    }
+
+    .gmaps {
+        position: static;
+        height: clamp(320px, 60dvh, 520px);
+        min-height: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .location {
+        padding-inline: 20px;
+    }
+
+    .visit-facts div {
+        grid-template-columns: 5rem 1fr;
+        gap: .75rem;
+    }
 }

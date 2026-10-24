@@ -17,8 +17,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
 
-    <!-- JS -->
-    <script type="module" src="/src/script.js" defer></script>
+    <!-- JS (modules are deferred by default) -->
+    <script type="module" src="/src/script.js"></script>
+    <script type="module" src="/src/location.js"></script>
 </head>
 <body>
 
@@ -43,20 +44,41 @@
     </header>
 
     <main>
-        <section class="intro">
-            <h1>Thinking of visiting?</h1>
-        </section>
-
         <section class="location">
-            <div class="gmaps">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.2909580854557!2d121.60274357590437!3d13.941273492876915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd4bcffbf080ef%3A0x3e33c8decc40be01!2syUP's%20The%20Matcha%20House!5e0!3m2!1sen!2sph!4v1790391276316!5m2!1sen!2sph"
-                    style="border:0;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="strict-origin-when-cross-origin">
-                </iframe>
-            </div>
+            <div class="location-inner">
 
+                <div class="location-info">
+                    <h1>Thinking of visiting?</h1>
+
+                    <p class="visit-status"><span class="visit-dot"></span><span id="open-now">Open right now</span></p>
+
+                    <dl class="visit-facts">
+                        <div><dt>Address</dt><dd id="address">Ruby Street, Pleasantville Bridge, Lucena City, 4301</dd></div>
+                    </dl>
+
+                    <div class="visit-actions">
+                        <a class="btn-primary"
+                           href="https://www.google.com/maps/dir//yUP's+The+Matcha+House,+Ruby+Street,+Pleasantville+Bridge,+Lucena+City,+4301/@13.941273,121.6023155,17z/data=!4m16!1m7!3m6!1s0x33bd4bcffbf080ef:0x3e33c8decc40be01!2syUP's+The+Matcha+House!8m2!3d13.9412683!4d121.6053185!16s%2Fg%2F11y0002fds!4m7!1m0!1m5!1m1!1s0x33bd4bcffbf080ef:0x3e33c8decc40be01!2m2!1d121.6053183!2d13.9412685?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"
+                           target="_blank" rel="noopener">Get directions</a>
+                        <button type="button" class="btn-link copy-address">Copy address</button>
+                    </div>
+
+                    <figure class="storefront">
+                        <img src="/src/assets/front.jpg" alt="The Matcha House storefront">
+                        <figcaption>Look for this storefront</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gmaps">
+                    <iframe title="Map showing the location of The Matcha House"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3872.2909580854557!2d121.60274357590437!3d13.941273492876915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd4bcffbf080ef%3A0x3e33c8decc40be01!2syUP's%20The%20Matcha%20House!5e0!3m2!1sen!2sph!4v1790391276316!5m2!1sen!2sph"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+                </div>
+
+            </div>
         </section>
     </main>
 
