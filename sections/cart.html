@@ -51,9 +51,44 @@
         </section>
     </main>
 
+    <dialog class="payment-modal" aria-labelledby="payment-modal-title">
+        <form class="payment-form">
+            <h2 id="payment-modal-title">Payment</h2>
+
+            <p class="payment-summary">
+                <span class="payment-type"></span>
+                <strong class="payment-total"></strong>
+            </p>
+
+            <fieldset class="payment-methods">
+                <legend>Pay with</legend>
+                <label>
+                    <input type="radio" name="payment" value="Cash" checked>
+                    <span>Cash <small class="payment-cash-hint"></small></span>
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="GCash">
+                    <span>GCash</span>
+                </label>
+                <label>
+                    <input type="radio" name="payment" value="Maya">
+                    <span>Maya</span>
+                </label>
+            </fieldset>
+
+            <p class="payment-note">Demo only. No real payment is processed.</p>
+
+            <div class="payment-actions">
+                <button type="button" class="payment-cancel">Cancel</button>
+                <button type="submit" class="btn-primary payment-submit">Pay</button>
+            </div>
+        </form>
+    </dialog>
+
     <dialog class="order-modal" aria-labelledby="order-modal-title">
         <h2 id="order-modal-title">Order placed!</h2>
-        <p>Thanks for ordering at The Matcha House. Payment isn't set up yet, so this was a demo order.</p>
+        <p>Thanks for ordering at The Matcha House!</p>
+        <p>Payment method: <strong class="order-method"></strong></p>
         <a class="btn-primary" href="/menu">Back to menu</a>
     </dialog>
 

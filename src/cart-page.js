@@ -10,6 +10,14 @@ const orderModal = document.querySelector('.order-modal')
 const peso = (n) => `₱${n.toLocaleString('en-PH')}`
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 
+const paymentModal = document.querySelector('.payment-modal')
+const paymentForm = paymentModal.querySelector('.payment-form')
+const paymentSubmit = paymentModal.querySelector('.payment-submit')
+const orderMethod = orderModal.querySelector('.order-method')
+
+const PROCESSING_MS = 1200
+let processing = false
+
 function row(item) {
     const label = item.size === 'Price' ? '' : item.size
     const attrs = `data-id="${esc(item.id)}" data-size="${esc(item.size)}"`
@@ -39,6 +47,9 @@ function row(item) {
 
 function render() {
     const { items, delivery } = getState()
+
+    // Keep the list's scroll position across re-renders
+    const scrollTop = root.querySelector('.cart-list')?.scrollTop ?? 0
 
     // Remember which control had focus so re-rendering doesn't drop it
     const active = document.activeElement
@@ -70,6 +81,9 @@ function render() {
 
         <button type="button" class="btn-primary place-order">Place Order</button>`
 
+    const list = root.querySelector('.cart-list')
+    if (list) list.scrollTop = scrollTop
+
     if (focusKey) {
         const [id, size, action] = focusKey.split('|')
         const target = [...root.querySelectorAll('button[data-action]')]
@@ -81,8 +95,7 @@ function render() {
 
 root.addEventListener('click', (event) => {
     if (event.target.closest('.place-order')) {
-        clear()
-        orderModal.showModal()
+        openPayment()
         return
     }
 
@@ -103,6 +116,53 @@ root.addEventListener('change', (event) => {
 
 orderModal.addEventListener('click', (event) => {
     if (event.target === orderModal) orderModal.close()
+})
+
+
+function openPayment() {
+    const { delivery } = getState()
+    const total = peso(getTotal())
+
+    paymentForm.reset()
+    paymentModal.querySelector('.payment-type').textContent = delivery ? 'Delivery order' : 'Pickup order'
+    paymentModal.querySelector('.payment-total').textContent = total
+    paymentModal.querySelector('.payment-cash-hint').textContent =
+        delivery ? 'Pay when it arrives' : 'Pay when you pick up'
+    paymentSubmit.textContent = `Pay ${total}`
+    paymentSubmit.disabled = false
+    paymentModal.showModal()
+}
+
+paymentForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    if (processing) return
+
+    const method = new FormData(paymentForm).get('payment')
+    processing = true
+    paymentSubmit.disabled = true
+    paymentSubmit.textContent = 'Processing…'
+
+    // Swap this timeout for a real payment request when you add a provider
+    setTimeout(() => {
+        processing = false
+        clear()
+        paymentModal.close()
+        orderMethod.textContent = method
+        orderModal.showModal()
+    }, PROCESSING_MS)
+})
+
+paymentModal.querySelector('.payment-cancel').addEventListener('click', () => {
+    if (!processing) paymentModal.close()
+})
+
+// Block Escape while "processing" so the order can't be half-completed
+paymentModal.addEventListener('cancel', (event) => {
+    if (processing) event.preventDefault()
+})
+
+paymentModal.addEventListener('click', (event) => {
+    if (event.target === paymentModal && !processing) paymentModal.close()
 })
 
 subscribe(render)
