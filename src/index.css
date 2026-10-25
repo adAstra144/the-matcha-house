@@ -42,13 +42,13 @@
 }
 
 .hero h1 {
+    margin-bottom: 10px;
+
     font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
 }
 
 .hero p {
-    margin-bottom: 20px;
-
     font-size: clamp(1rem, 2vw, 1.2rem);
     text-align: center;
 }
@@ -104,7 +104,6 @@
 .about-copy h2 {
     margin-bottom: clamp(1.5rem, 3vw, 2rem);
 
-    font-family: "Fraunces", Georgia, serif;
     font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 600;
     line-height: 1.1;
@@ -183,11 +182,19 @@
 
 /* ---------- Reviews ---------- */
 .reviews {
-    width: 80%;
-    height: auto;
-
+    padding-inline: 10%;
     margin: 0 auto;
-    padding-bottom: 20px;
+
+    height: auto;
+}
+
+.reviews h2 {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    text-align: center;
+
+    color: var(--primary);
 }
 
 .reviews .arrow {
@@ -204,8 +211,8 @@
 }
 
 /* ==========================================================================*
- *  Media queries: widest to narrowest, so smaller screens override larger ones
- *  ========================================================================== */
+    Media queries: widest to narrowest, so smaller screens override larger ones
+   ========================================================================== */
 
 /* ---------- Tablet (<= 1023px) ---------- */
 @media (max-width: 1023px) {
@@ -243,6 +250,11 @@
 
 /* ---------- Mobile (<= 640px) ---------- */
 @media (max-width: 640px) {
+    .hero .arrow {
+        position: absolute;
+        bottom: 20px;
+    }
+
     .about {
         padding-block: clamp(4rem, 10vh, 6rem) clamp(1.25rem, 4vw, 2rem);
     }
