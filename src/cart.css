@@ -208,7 +208,7 @@ main {
     margin: auto;
     width: min(420px, calc(100% - 32px));
     height: fit-content;
-    padding: 32px 28px;
+    padding: clamp(16px, 4vw + 4px, 32px) clamp(14px, 3.5vw + 4px, 28px);
     border: 0;
     border-radius: 20px;
     text-align: center;
@@ -335,18 +335,148 @@ main {
     outline-offset: 2px;
 }
 
-/* ---------- Mobile: stack each row ---------- */
+/* ---------- Mobile: compact cart ---------- */
 @media (max-width: 560px) {
+    .cart {
+        padding: 12px 16px 24px;
+    }
+
+    .cart-title {
+        font-size: 1.5rem;
+        padding-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Less space reserved for everything around the list = more list */
+    .cart-list {
+        max-height: clamp(160px, calc(100dvh - 390px), 420px);
+        padding-inline: 2px;
+    }
+
+    /* Rows */
     .cart-row {
-        grid-template-columns: 64px 1fr auto;
+        grid-template-columns: 48px 1fr auto;
         grid-template-areas:
             "img info remove"
             "img qty  total";
+        gap: 4px 10px;
+        padding: 8px 0;
     }
 
-    .cart-row img { grid-area: img; }
-    .cart-row-info { grid-area: info; }
+    .cart-row img {
+        grid-area: img;
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Name on the first line, "Regular · ₱255 each" on one line below it */
+    .cart-row-info {
+        grid-area: info;
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 6px;
+    }
+
+    .cart-row-name {
+        flex-basis: 100%;
+        font-size: 0.95rem;
+    }
+
+    .cart-row-size,
+    .cart-row-price {
+        font-size: 0.75rem;
+    }
+
+    .cart-row-size::after {
+        content: "·";
+        margin-left: 6px;
+    }
+
     .qty { grid-area: qty; }
-    .cart-row-total { grid-area: total; }
+
+    .cart-row-total {
+        grid-area: total;
+        min-width: 0;
+        font-size: 0.95rem;
+    }
+
     .cart-remove { grid-area: remove; }
+
+    .qty button,
+    .cart-remove {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .cart-remove svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Order type */
+    .cart-fulfilment {
+        margin-top: 12px;
+        padding: 8px 12px;
+        gap: 6px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Totals + button */
+    .cart-totals {
+        margin-top: 12px;
+        font-size: 0.9rem;
+    }
+
+    .cart-totals div {
+        padding: 3px 0;
+    }
+
+    .cart-totals .cart-total {
+        margin-top: 4px;
+        padding-top: 8px;
+        font-size: 1.1rem;
+    }
+
+    .place-order {
+        margin-top: 14px;
+        padding: 11px;
+        font-size: 1rem;
+    }
+
+    /* Modals */
+    .order-modal h2,
+    .payment-modal h2 {
+        font-size: 1.25rem;
+    }
+
+    .order-modal p {
+        margin-bottom: 16px;
+    }
+
+    .payment-summary {
+        padding: 8px 0;
+    }
+
+    .payment-methods {
+        margin-top: 12px;
+        gap: 6px;
+    }
+
+    .payment-methods label {
+        padding: 8px 12px;
+    }
+
+    .payment-note {
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+
+    .payment-actions {
+        margin-top: 14px;
+    }
+
+    .payment-actions button {
+        padding: 0.65rem 0.8rem;
+    }
 }
