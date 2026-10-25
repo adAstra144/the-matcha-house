@@ -277,7 +277,6 @@ const sidebar = document.querySelector('.menu-sidebar')
 const toggleBtn = document.querySelector('.sidebar-toggle')
 const backdrop = document.querySelector('.sidebar-backdrop')
 const drawerQuery = window.matchMedia('(max-width: 1023px)')
-const chipsQuery = window.matchMedia('(max-width: 640px)')
 
 function setDrawer(open) {
     sidebar.classList.toggle('open', open)
@@ -325,11 +324,6 @@ function updateActive() {
         link.classList.toggle('active', isActive)
         if (isActive) link.setAttribute('aria-current', 'location')
         else link.removeAttribute('aria-current')
-
-        // Keep the active chip visible in the horizontal mobile bar
-        if (isActive && chipsQuery.matches) {
-            link.scrollIntoView({ inline: 'center', block: 'nearest' })
-        }
     }
 }
 
