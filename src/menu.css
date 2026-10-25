@@ -1,23 +1,4 @@
-html {
-    scroll-behavior: smooth;
-}
-
-/* Lock page scroll while the item modal is open */
-body:has(dialog[open]) {
-    overflow: hidden;
-}
-
-header nav a[aria-current="page"] {
-    color: var(--accent);
-}
-
-main {
-    width: 100%;
-}
-
-
-
-/* ---------- Menu layout ---------- */
+/* ---------- Layout ---------- */
 .menu {
     min-height: 100dvh;
     width: 100%;
@@ -53,7 +34,7 @@ main {
 
 .menu-content h2 {
     /* Offset for the sticky header when jumping to a category */
-    scroll-margin-top: 90px;
+    scroll-margin-top: calc(var(--header-h) + 20px);
 
     font-size: clamp(1.75rem, 5vw, 2.5rem);
     text-align: left;
@@ -63,7 +44,62 @@ main {
     border-bottom: 2px solid var(--bamboo);
 }
 
-/* ---------- Item grid ---------- */
+/* ---------- Sidebar (desktop) ---------- */
+.menu-sidebar {
+    flex: 0 0 220px;
+    position: sticky;
+    top: calc(var(--header-h) + 20px);
+    align-self: flex-start;
+    max-height: calc(100dvh - var(--header-h) - 40px);
+    overflow-y: auto;
+    padding-right: 1rem;
+    border-right: 1px solid var(--bamboo);
+}
+
+.sidebar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-link:hover {
+    background-color: var(--bamboo);
+    color: var(--primary);
+}
+
+.sidebar-link.active {
+    background-color: var(--primary);
+    color: var(--bg-warm);
+}
+
+.sidebar-link:focus-visible,
+.sidebar-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Hidden on desktop; shown in the tablet drawer breakpoint below */
+.sidebar-toggle,
+.sidebar-backdrop {
+    display: none;
+}
+
+/* ---------- Items ---------- */
 .item-container {
     /* Width of 5 items + (gap * items) + padding (on both sides) */
     width: min(980px, 100%);
@@ -79,6 +115,12 @@ main {
     gap: clamp(1rem, 4vw, 3.1rem);
 }
 
+.item-card {
+    width: clamp(80px, 22vw, 150px);
+
+    position: relative;
+}
+
 .item {
     width: clamp(80px, 22vw, 150px);
     padding: 0;
@@ -91,6 +133,11 @@ main {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.item-card .item {
+    width: 100%;
+}
+
+/* A capability query (not a breakpoint), so it stays next to the rule it modifies */
 @media (hover: hover) {
     .item:hover {
         transform: translateY(-5px);
@@ -113,13 +160,43 @@ main {
     line-height: 1.3;
 }
 
-.item:focus-visible,
-.modal-close:focus-visible {
+.item:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 4px;
 }
 
-/* ---------- Modal ---------- */
+.quick-add {
+    width: 34px;
+    height: 34px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: var(--primary);
+    color: var(--bg-warm);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+
+    font-size: 1.4rem;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.quick-add:disabled {
+    opacity: 0.6;
+}
+
+.quick-add:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Item modal ---------- */
 .item-modal {
     position: fixed;
     top: 50%;
@@ -172,31 +249,109 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
- 
+
     gap: 24px;
     margin-top: 10px;
- 
+
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     font-weight: 700;
- 
+
     color: var(--accent);
 }
- 
+
 .modal-price {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
- 
+
 .modal-price span {
     font-size: 0.8rem;
     font-weight: 500;
     color: var(--text-muted);
 }
 
+.modal-sizes {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.modal-sizes label {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+}
+
+.modal-sizes input {
+    accent-color: var(--primary);
+}
+
+/* Either the prices or the size picker is shown, never both */
+.modal-prices[hidden],
+.modal-sizes[hidden] {
+    display: none;
+}
+
 .modal-description {
     margin-top: 18px;
     color: var(--text-muted);
+}
+
+.modal-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.modal-qty {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid var(--bamboo);
+    border-radius: 50%;
+
+    background: var(--bg-soft);
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+}
+
+.qty-value {
+    min-width: 2ch;
+
+    text-align: center;
+    font-weight: 700;
+}
+
+.modal-add {
+    flex: 1;
+
+    padding: 0.8rem 1.4rem;
+
+    border: 0;
+    border-radius: 6px;
+
+    background: var(--primary);
+    color: #fff;
+
+    cursor: pointer;
 }
 
 .modal-close {
@@ -218,79 +373,23 @@ main {
     cursor: pointer;
 }
 
-@media (max-width: 560px) {
-    .modal-content {
-        grid-template-columns: 1fr;
-    }
-
-    .modal-image {
-        height: clamp(160px, 38dvh, 320px);
-        min-height: 0;
-        object-fit: contain;
-        border-radius: 20px 20px 0 0;
-    }
-
-    .modal-details {
-        padding-top: 24px;
-    }
+.modal-close:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
 }
 
-/* ---------- Sidebar (desktop) ---------- */
-.menu-sidebar {
-    flex: 0 0 220px;
-    position: sticky;
-    top: 90px;
-    align-self: flex-start;
-    max-height: calc(100dvh - 110px);
-    overflow-y: auto;
-    padding-right: 1rem;
-    border-right: 1px solid var(--bamboo);
-}
-
-.sidebar-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.sidebar-link {
-    display: block;
-    padding: 10px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: var(--text);
-    font-size: 0.9rem;
-    font-weight: 500;
-    line-height: 1.4;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.sidebar-link:hover {
-    background-color: var(--bamboo);
-    color: var(--primary);
-}
-
-.sidebar-link:focus-visible,
-.sidebar-toggle:focus-visible {
-    outline: 2px solid var(--accent);
+.qty-btn:focus-visible,
+.modal-add:focus-visible,
+.modal-sizes input:focus-visible {
+    outline: 3px solid var(--accent);
     outline-offset: 2px;
 }
 
-.sidebar-link.active {
-    background-color: var(--primary);
-    color: var(--bg-warm);
-}
+/* ==========================================================================*
+    Media queries: widest to narrowest, so smaller screens override larger ones
+   ========================================================================== */
 
-/* Hidden on desktop; shown in the drawer breakpoint below */
-.sidebar-toggle,
-.sidebar-backdrop {
-    display: none;
-}
-
-/* ---------- Tablet: collapsible drawer ---------- */
+/* ---------- Tablet (<= 1023px): collapsible category drawer ---------- */
 @media (max-width: 1023px) {
     .menu-title {
         padding-inline: 10px;
@@ -313,7 +412,7 @@ main {
         margin-top: 0.6rem;
 
         position: sticky;
-        top: 80px;
+        top: calc(var(--header-h) + 10px);
         z-index: 30;
 
         padding: 8px 12px;
@@ -337,11 +436,11 @@ main {
 
     .menu-sidebar {
         position: fixed;
-        top: 70px;
+        top: var(--header-h);
         left: 0;
         width: 280px;
         max-width: 85vw;
-        height: calc(100dvh - 70px);
+        height: calc(100dvh - var(--header-h));
         max-height: none;
         z-index: 50;
 
@@ -380,191 +479,14 @@ main {
     }
 }
 
-/* ---------- Mobile ---------- */
-@media (max-width: 640px) {
-    .menu {
-        padding: 10px 0;
-    }
-
-    .menu-title {
-        padding: 24px 10px 10px;
-    }
-
-    .menu-layout {
-        padding: 0 16px 24px;
-    }
-
-    .menu-content h2 {
-        margin-top: 8px;
-        font-size: clamp(1.5rem, 5vw, 2rem);
-    }
-
-    /* Even grid instead of centered flex wrap: 3 columns, 2 on very narrow phones */
-    .item-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
-        align-items: start;
-        gap: 24px 12px;
-        width: 100%;
-        margin-top: 16px;
-        margin-bottom: 32px;
-        padding: 0;
-    }
-
-    .item {
-        width: 100%;
-    }
-}
-
-/* ---------- Reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    .menu-sidebar,
-    .sidebar-backdrop,
-    .sidebar-link,
-    .item {
-        transition: none;
-    }
-}
-
-.item-card { 
-    width: clamp(80px, 22vw, 150px); 
-    
-    position: relative; 
-}
-
-.item-card .item {
-    width: 100%; 
-}
-
-.quick-add {
-    width: 34px; 
-    height: 34px;
-    
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    
-    border: 0; 
-    border-radius: 50%; 
-    
-    background: var(--primary); 
-    color: var(--bg-warm);
-    
-    box-shadow: 0 2px 6px rgba(0,0,0,.3);
-    
-    font-size: 1.4rem; 
-    line-height: 1; 
-    
-    cursor: pointer; 
-}
-
-.quick-add:disabled { 
-    opacity: 0.6; 
-}
-
-.quick-add:focus-visible { 
-    outline: 3px solid var(--accent); 
-    outline-offset: 2px; 
-}
-
-@media (max-width: 640px) { 
-    .item-card { 
-        width: 100%; 
-    } 
-}
-
-.modal-prices[hidden], .modal-sizes[hidden] { 
-    display: none; 
-}
-
-.modal-sizes { 
-    display: flex; 
-    flex-direction: column; 
-    
-    gap: 8px; 
-    margin-top: 12px; 
-}
-
-.modal-sizes label { 
-    display: flex; 
-    align-items: center; 
-    
-    gap: 8px; 
-    
-    cursor: pointer; 
-}
-
-.modal-sizes input { 
-    accent-color: var(--primary); 
-}
-
-.modal-actions { display: flex; 
-    align-items: center; 
-    flex-wrap: wrap; 
-    
-    gap: 16px; 
-    margin-top: 20px; 
-}
-
-.modal-qty { 
-    display: flex; 
-    align-items: center; 
-    
-    gap: 10px; 
-}
-
-.qty-btn {
-    width: 36px; 
-    height: 36px; 
-    
-    border: 1px solid var(--bamboo); 
-    border-radius: 50%;
-    
-    background: var(--bg-soft); 
-    
-    font-size: 1.2rem; 
-    
-    cursor: pointer;
-}
-
-.qty-value { 
-    min-width: 2ch; 
-    
-    text-align: center; 
-    font-weight: 700; 
-}
-
-.modal-add {
-    flex: 1; 
-    
-    padding: 0.8rem 1.4rem; 
-    
-    border: 0; 
-    border-radius: 6px;
-    
-    background: var(--primary); 
-    color: #fff; 
-    
-    cursor: pointer;
-}
-
-.qty-btn:focus-visible, .modal-add:focus-visible, .modal-sizes input:focus-visible {
-    outline: 3px solid var(--accent); 
-    outline-offset: 2px;
-}
-
-/* ---------- Phones: menu page ---------- */
+/* ---------- Phones (<= 640px): menu page ---------- */
 @media (max-width: 640px) {
     .menu {
         padding: 4px 0 0;
     }
 
     .menu-title {
-        padding: 4px 12px 4px;
+        padding: 4px 12px;
     }
 
     .menu-layout {
@@ -589,12 +511,21 @@ main {
         font-size: 1.3rem;
     }
 
-    /* Smaller cards, tighter spacing. More columns fit on wider phones */
+    /* Even grid instead of centered flex wrap; more columns fit on wider phones */
     .item-container {
+        display: grid;
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        align-items: start;
         gap: 16px 8px;
+        width: 100%;
         margin-top: 10px;
         margin-bottom: 20px;
+        padding: 0;
+    }
+
+    .item-card,
+    .item {
+        width: 100%;
     }
 
     .item img {
@@ -614,7 +545,7 @@ main {
     }
 }
 
-/* ---------- Phones: item modal ---------- */
+/* ---------- Phones (<= 560px): item modal ---------- */
 @media (max-width: 560px) {
     .item-modal {
         width: calc(100% - 24px);
@@ -622,8 +553,14 @@ main {
         border-radius: 16px;
     }
 
+    .modal-content {
+        grid-template-columns: 1fr;
+    }
+
     .modal-image {
         height: clamp(120px, 26dvh, 200px);
+        min-height: 0;
+        object-fit: contain;
         border-radius: 16px 16px 0 0;
     }
 
@@ -677,5 +614,15 @@ main {
 
     .modal-add {
         padding: 0.65rem 1rem;
+    }
+}
+
+/* ---------- Reduced motion (last, so it overrides everything above) ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .menu-sidebar,
+    .sidebar-backdrop,
+    .sidebar-link,
+    .item {
+        transition: none;
     }
 }

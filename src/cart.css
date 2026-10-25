@@ -1,13 +1,8 @@
-body:has(dialog[open]) {
-    overflow: hidden;
-}
-
-main {
-    width: 100%;
-}
+/* ---------- Layout ---------- */
 
 .cart {
     width: min(720px, 100%);
+
     margin: 0 auto;
     padding: clamp(24px, 5vw, 48px) 20px 64px;
     padding-top: clamp(12px, 2.5vw, 24px);
@@ -16,8 +11,10 @@ main {
 .cart-title {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
     color: var(--primary);
+
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+
     border-bottom: 2px solid var(--bamboo);
 }
 
@@ -28,9 +25,12 @@ main {
 /* ---------- Items ---------- */
 .cart-list {
     list-style: none;
+
     margin: 0;
     padding: 2px 6px 0;
+
     max-height: clamp(220px, calc(100dvh - 520px), 480px);
+
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
@@ -41,14 +41,17 @@ main {
     display: grid;
     grid-template-columns: 64px 1fr auto auto auto;
     align-items: center;
+
     gap: 8px 16px;
     padding: 14px 0;
+
     border-bottom: 1px solid var(--bamboo);
 }
 
 .cart-row img {
     width: 64px;
     height: 64px;
+
     object-fit: contain;
     border-radius: 8px;
     background: var(--bg-warm);
@@ -66,6 +69,7 @@ main {
 
 .cart-row-total {
     min-width: 4.5rem;
+
     text-align: right;
     font-weight: 700;
     color: var(--primary);
@@ -74,11 +78,13 @@ main {
 .qty {
     display: flex;
     align-items: center;
+
     gap: 4px;
 }
 
 .qty span {
     min-width: 2ch;
+
     text-align: center;
     font-weight: 500;
 }
@@ -87,20 +93,25 @@ main {
 .cart-remove {
     width: 36px;
     height: 36px;
+
     display: grid;
     place-items: center;
+
     border: 1px solid var(--bamboo);
     border-radius: 50%;
     background: var(--bg-warm);
+
     color: var(--text);
     font-size: 1.2rem;
     line-height: 1;
+
     cursor: pointer;
 }
 
 .cart-remove {
     border-color: transparent;
     background: transparent;
+
     color: var(--text-muted);
 }
 
@@ -108,6 +119,7 @@ main {
 .cart-remove:hover {
     background: var(--primary);
     border-color: var(--primary);
+
     color: var(--bg-warm);
 }
 
@@ -123,22 +135,27 @@ main {
 .cart-fulfilment {
     display: flex;
     flex-wrap: wrap;
+
     gap: 12px 28px;
     margin-top: 24px;
     padding: 14px 16px;
+
     border: 1px solid var(--bamboo);
     border-radius: 10px;
 }
 
 .cart-fulfilment legend {
     padding: 0 6px;
+
     font-weight: 700;
 }
 
 .cart-fulfilment label {
     display: flex;
     align-items: center;
+
     gap: 8px;
+
     cursor: pointer;
 }
 
@@ -154,13 +171,16 @@ main {
 .cart-totals div {
     display: flex;
     justify-content: space-between;
+
     padding: 6px 0;
 }
 
 .cart-totals .cart-total {
     margin-top: 6px;
     padding-top: 12px;
+
     border-top: 2px solid var(--bamboo);
+
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary);
@@ -172,10 +192,14 @@ main {
 
 .place-order {
     width: 100%;
+
     margin-top: 24px;
     padding: 14px;
+
     border: 0;
+
     font-size: 1.05rem;
+
     cursor: pointer;
 }
 
@@ -184,36 +208,36 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     gap: 20px;
     padding: 64px 0;
+
     text-align: center;
     color: var(--text-muted);
 }
 
-/* ---------- Shared button look (cart page + order modal) ---------- */
-.btn-primary {
-    display: inline-block;
-    padding: 0.8rem 1.4rem;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    background: var(--primary);
-}
-
 /* ---------- Success modal + payment modal ---------- */
-.order-modal, 
+.order-modal,
 .payment-modal {
     position: fixed;
     inset: 0;
+
     margin: auto;
+
     width: min(420px, calc(100% - 32px));
     height: fit-content;
+
     padding: clamp(16px, 4vw + 4px, 32px) clamp(14px, 3.5vw + 4px, 28px);
+
     border: 0;
     border-radius: 20px;
+
     text-align: center;
+
     background: var(--bg-warm);
+
     color: var(--text);
+
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
@@ -224,22 +248,24 @@ main {
 
 .order-modal h2 {
     color: var(--primary);
+
     margin-bottom: 8px;
 }
 
 .order-modal p {
     margin-bottom: 24px;
+
     color: var(--text-muted);
 }
 
 /* --------------- Payment Modal -------------- */
-
 .payment-modal {
     text-align: left;
 }
 
 .payment-modal h2 {
     color: var(--primary);
+
     margin-bottom: 12px;
 }
 
@@ -247,7 +273,9 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+
     padding: 12px 0;
+
     border-block: 1px solid var(--bamboo);
 }
 
@@ -258,25 +286,31 @@ main {
 
 .payment-methods {
     display: grid;
+
     gap: 10px;
     margin: 20px 0 0;
     padding: 0;
+
     border: 0;
 }
 
 .payment-methods legend {
     padding: 0;
     margin-bottom: 8px;
+
     font-weight: 700;
 }
 
 .payment-methods label {
     display: flex;
     align-items: center;
+
     gap: 12px;
     padding: 12px 14px;
+
     border: 1px solid var(--bamboo);
     border-radius: 10px;
+
     cursor: pointer;
 }
 
@@ -291,32 +325,40 @@ main {
 
 .payment-methods small {
     display: block;
+
     color: var(--text-muted);
 }
 
 .payment-note {
     margin: 16px 0 0;
+
     font-size: 0.85rem;
     color: var(--text-muted);
 }
 
 .payment-actions {
     display: flex;
+
     gap: 12px;
     margin-top: 20px;
 }
 
 .payment-actions button {
     flex: 1;
+
     padding: 0.8rem 1rem;
+
     border-radius: 6px;
+
     font-size: 1rem;
+
     cursor: pointer;
 }
 
 .payment-cancel {
     border: 1px solid var(--bamboo);
     background: transparent;
+
     color: var(--text);
 }
 
@@ -326,6 +368,7 @@ main {
 
 .payment-submit:disabled {
     opacity: 0.6;
+
     cursor: progress;
 }
 
@@ -343,6 +386,7 @@ main {
 
     .cart-title {
         font-size: 1.5rem;
+
         padding-bottom: 0.25rem;
         margin-bottom: 0.5rem;
     }
@@ -350,6 +394,7 @@ main {
     /* Less space reserved for everything around the list = more list */
     .cart-list {
         max-height: clamp(160px, calc(100dvh - 390px), 420px);
+
         padding-inline: 2px;
     }
 
@@ -365,6 +410,7 @@ main {
 
     .cart-row img {
         grid-area: img;
+
         width: 48px;
         height: 48px;
     }
@@ -374,11 +420,13 @@ main {
         grid-area: info;
         display: flex;
         flex-wrap: wrap;
+
         column-gap: 6px;
     }
 
     .cart-row-name {
         flex-basis: 100%;
+
         font-size: 0.95rem;
     }
 
@@ -389,23 +437,31 @@ main {
 
     .cart-row-size::after {
         content: "·";
+
         margin-left: 6px;
     }
 
-    .qty { grid-area: qty; }
+    .qty {
+        grid-area: qty;
+    }
 
     .cart-row-total {
         grid-area: total;
+
         min-width: 0;
+
         font-size: 0.95rem;
     }
 
-    .cart-remove { grid-area: remove; }
+    .cart-remove {
+        grid-area: remove;
+    }
 
     .qty button,
     .cart-remove {
         width: 30px;
         height: 30px;
+
         font-size: 1rem;
     }
 
@@ -419,12 +475,14 @@ main {
         margin-top: 12px;
         padding: 8px 12px;
         gap: 6px 20px;
+
         font-size: 0.9rem;
     }
 
     /* Totals + button */
     .cart-totals {
         margin-top: 12px;
+
         font-size: 0.9rem;
     }
 
@@ -435,12 +493,14 @@ main {
     .cart-totals .cart-total {
         margin-top: 4px;
         padding-top: 8px;
+
         font-size: 1.1rem;
     }
 
     .place-order {
         margin-top: 14px;
         padding: 11px;
+
         font-size: 1rem;
     }
 
@@ -469,6 +529,7 @@ main {
 
     .payment-note {
         margin-top: 10px;
+
         font-size: 0.8rem;
     }
 

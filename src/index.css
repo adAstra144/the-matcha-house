@@ -1,18 +1,10 @@
-header nav a:nth-of-type(1) {
-    color: var(--accent);
-
-    pointer-events: none;
-}
-
-main {
-    width: 100%;
-}
-
+/* ---------- Hero ---------- */
 .hero {
     position: relative;
-    isolation: isolate;          /* keeps the z-index layering contained */
+    isolation: isolate; /* Keeps the z-index layering contained */
     overflow: hidden;
-    min-height: calc(100vh - 70px);
+
+    min-height: calc(100vh - var(--header-h));
     padding-inline: 10%;
 
     display: flex;
@@ -28,10 +20,12 @@ main {
 .hero-video {
     position: absolute;
     inset: 0;
+    z-index: -2;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    z-index: -2;
 }
 
 .hero::before {
@@ -39,22 +33,27 @@ main {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(to right, rgba(20, 40, 20, 0.95), rgba(20, 40, 20, 0.35));
+
+    background: linear-gradient(
+        to right,
+        rgba(20, 40, 20, 0.95),
+        rgba(20, 40, 20, 0.35)
+    );
 }
 
 .hero h1 {
-    font-size:clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
 }
 
 .hero p {
+    margin-bottom: 20px;
+
     font-size: clamp(1rem, 2vw, 1.2rem);
     text-align: center;
-
-    margin-bottom: 20px;
 }
 
-.hero .arrow {    
+.hero .arrow {
     padding: 100px 100%;
     margin: -100px -100%;
     padding-bottom: 100%;
@@ -78,20 +77,24 @@ main {
     }
 }
 
+/* ---------- About ---------- */
 .about {
     position: relative;
+
     padding-block: clamp(5rem, 12vh, 8rem) clamp(1.5rem, 5vw, 4rem);
-    background: var(--bg-soft);
     padding-inline: 10%;
+
+    background: var(--bg-soft);
 }
 
 .about-inner {
     max-width: 1200px;
     margin: 0 auto;
+
     display: grid;
     grid-template-columns: 1fr 320px;
-    gap: clamp(3rem, 8vw, 5rem);
     align-items: start;
+    gap: clamp(3rem, 8vw, 5rem);
 }
 
 .about-copy {
@@ -99,117 +102,55 @@ main {
 }
 
 .about-copy h2 {
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+
     font-family: "Fraunces", Georgia, serif;
     font-size: clamp(2.25rem, 5vw, 3.5rem);
     font-weight: 600;
     line-height: 1.1;
     letter-spacing: 0.02em;
+
     color: var(--primary);
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .about-lead {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
     font-size: clamp(1.05rem, 1.8vw, 1.25rem);
     line-height: 1.75;
+
     color: var(--text);
-    margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .about-pull {
+    margin: 0;
+    padding-left: clamp(1rem, 2.5vw, 1.5rem);
+
+    border-left: 2px solid var(--bamboo);
+
     font-family: "Fraunces", Georgia, serif;
     font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 400;
     font-style: italic;
     line-height: 1.4;
-    color: var(--primary);
-    border-left: 2px solid var(--bamboo);
-    padding-left: clamp(1rem, 2.5vw, 1.5rem);
-    margin: 0;
-}
 
-.visit { 
-    margin-top: 5rem; 
-    max-width: 34rem; 
-}
-
-.visit-status {
-    display: flex; 
-    align-items: center; 
-
-    gap: .6rem;
-
-    font-weight: 500; 
     color: var(--primary);
 }
 
-.visit-dot {
-    width: .6rem; 
-    height: .6rem; 
-
-    border-radius: 50%;
-
-    background: var(--secondary);
+/* ---------- Visit info ---------- */
+.visit {
+    max-width: 34rem;
+    margin-top: 5rem;
 }
 
-.visit-facts {
-    margin: 1.5rem 0 2rem; 
-}
-
-.visit-facts div {
-    display: grid; 
-    grid-template-columns: 6rem 1fr; 
-
-    gap: 1rem;
-    padding: .85rem 0;
-
-    border-top: 1px solid var(--bamboo);
-}
-
-.visit-facts div:last-child { 
-    border-bottom: 1px solid var(--bamboo, #A89B7A); 
-}
-
-.visit-facts dt { 
-    color: var(--text-muted, #46463E); 
-}
-
-.visit-facts dd { 
-    margin: 0; 
-    font-family: "Fraunces", serif; 
-}
-
-.visit-actions { 
-    display: flex; 
-    align-items: center; 
-
-    gap: 1.5rem; 
-}
-
-.btn-primary {
-    padding: .8rem 1.4rem; 
-    border-radius: 6px;
-
-    text-decoration: none;
-
-    color: #fff;
-    background: var(--primary, #1B3D24); 
-}
-
-.btn-link { 
-    color: var(--accent, #C47B3A); 
-}
-
-.btn-primary:focus-visible, .btn-link:focus-visible { 
-    outline: 2px solid var(--accent, #C47B3A); 
-    outline-offset: 3px; 
-}
-
+/* ---------- Photos ---------- */
 .photos {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+
     display: flex;
     flex-direction: column;
     gap: clamp(1rem, 2vw, 1.5rem);
-    position: sticky;
-    top: calc(70px + 2rem);
 }
 
 .photos .card {
@@ -218,27 +159,29 @@ main {
 }
 
 .photos .card p {
-    text-align: center;
-
     padding-top: 12px;
-    
+
+    background-color: var(--bg-warm);
+
     font-family: var(--font-header);
     font-size: 1.2rem;
+    text-align: center;
 
     color: var(--text);
-    background-color: var(--bg-warm);
 }
 
+/* ---------- Section divider ---------- */
 .about-rule {
+    max-width: 1200px;
+    margin: clamp(3rem, 6vw, 4rem) auto 0;
+
     border: none;
     border-top: 1px solid var(--bamboo);
-    margin-top: clamp(3rem, 6vw, 4rem);
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+
     opacity: 0.5;
 }
 
+/* ---------- Reviews ---------- */
 .reviews {
     width: 80%;
     height: auto;
@@ -260,12 +203,17 @@ main {
     transition: filter 0.3s ease-in-out;
 }
 
-/* Tablet */
+/* ==========================================================================*
+ *  Media queries: widest to narrowest, so smaller screens override larger ones
+ *  ========================================================================== */
+
+/* ---------- Tablet (<= 1023px) ---------- */
 @media (max-width: 1023px) {
     .about-inner {
         grid-template-columns: 1fr;
         gap: clamp(3rem, 6vw, 4rem);
         max-width: 600px;
+
         text-align: center;
     }
 
@@ -275,15 +223,17 @@ main {
     }
 
     .about-pull {
-        border-left: none;
-        border-top: 2px solid var(--bamboo);
-        padding-left: 0;
-        padding-top: 1.5rem;
         margin-top: 1rem;
+        padding-top: 1.5rem;
+        padding-left: 0;
+
+        border-top: 2px solid var(--bamboo);
+        border-left: none;
     }
 
     .photos {
         position: static;
+
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -291,7 +241,7 @@ main {
     }
 }
 
-/* Mobile */
+/* ---------- Mobile (<= 640px) ---------- */
 @media (max-width: 640px) {
     .about {
         padding-block: clamp(4rem, 10vh, 6rem) clamp(1.25rem, 4vw, 2rem);

@@ -80,9 +80,9 @@ npm run preview
 │   ├── assets/               # Brand, café, menu-item, and icon assets
 │   ├── cart.js               # Session-persisted cart store
 │   ├── cart-page.js          # Cart-page rendering and interactions
-│   ├── cart-ui.js            # Shared cart badge and toast UI
 │   ├── menu.js               # Menu data, rendering, modal, and category UI
-│   ├── script.js             # Shared responsive navigation
+│   ├── script.js             # Shared nav + header cart button
+│   ├── toast.js              # showToast()
 │   └── *.css                 # Shared and page-specific styles
 ├── public/                   # Favicon and PWA icons
 ├── vite.config.js            # Multi-page build, routes, QR code, and PWA config
