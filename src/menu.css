@@ -35,7 +35,6 @@ main {
     padding-inline: 20px;
 
     font-size: clamp(2rem, 4.5vw, 3rem);
-    line-height: 1.1;
     color: var(--primary);
 }
 
@@ -382,7 +381,6 @@ main {
 }
 
 /* ---------- Mobile ---------- */
-/* Phones reuse the tablet drawer + "Categories" button (see the 1023px block) */
 @media (max-width: 640px) {
     .menu {
         padding: 10px 0;
@@ -559,12 +557,6 @@ main {
     outline-offset: 2px;
 }
 
-/* =========================================================
-   Compact sizing for small screens
-   Keep this at the END of the file so it overrides the base
-   rules above (cascade order).
-   ========================================================= */
-
 /* ---------- Phones: menu page ---------- */
 @media (max-width: 640px) {
     .menu {
@@ -572,8 +564,7 @@ main {
     }
 
     .menu-title {
-        padding: 14px 12px 4px;
-        font-size: 1.6rem;
+        padding: 4px 12px 4px;
     }
 
     .menu-layout {
@@ -582,6 +573,7 @@ main {
 
     /* Smaller "Categories" button; keep the first heading clear of it */
     .sidebar-toggle {
+        margin-top: 0;
         padding: 6px 10px;
         font-size: 0.8rem;
     }
