@@ -2,7 +2,7 @@
 
 > Good things come in green.
 
-A responsive, multi-page café website built with **HTML, CSS, vanilla JavaScript, and Vite** as a student front-end web development project. It demonstrates menu browsing, interactive product dialogs, a client-side shopping cart, responsive navigation, SEO metadata, social link previews, and Progressive Web App (PWA) capabilities.
+A responsive, multi-page café website built with **HTML, CSS, vanilla JavaScript, and Vite** as a student front-end web development project. It demonstrates menu browsing, interactive product dialogs, a client-side shopping cart, membership registration, responsive navigation, SEO metadata, social link previews, and Progressive Web App (PWA) capabilities.
 
 **Live Demo:** [thematchahouse.vercel.app](https://thematchahouse.vercel.app/)
 
@@ -18,7 +18,7 @@ A responsive, multi-page café website built with **HTML, CSS, vanilla JavaScrip
 >
 > Business names, branding, photographs, menu descriptions, prices, location information, and social media links are included for demonstration purposes and may not reflect current official information. Please consult the business's official channels for accurate details.
 >
-> The ordering interface is a front-end demonstration only. It does not submit real orders or process real payments.
+> The ordering interface and membership system are front-end demonstrations only. They do not submit real orders, process real payments, or manage actual user database memberships.
 
 ## Code Style
 
@@ -63,52 +63,56 @@ The repository includes a dedicated Open Graph image used for social link previe
 - Size selection for products with multiple price options.
 - Quantity controls and quick-add buttons.
 
-### Shopping Cart
+### Shopping Cart & Member Discounts
 
 - Client-side cart state shared across pages.
 - Cart persistence through `sessionStorage`.
+- Automatic 5% membership discount integration for registered members.
 - Quantity adjustment and item removal.
-- Pickup and delivery selection.
-- Automatic subtotal, delivery fee, and total calculations.
-- Demo checkout flow with a confirmation dialog.
+- Pickup and delivery selection with automated delivery fee calculations.
+- Demo checkout flow supporting Cash, GCash, and Maya payment methods with confirmation dialogs.
 
 **Note:** The cart is entirely front-end functionality. Cart contents are stored in the current browser tab's session, and checkout is simulated.
 
+### Membership Club
+
+- Interactive member registration form.
+- Automated generation of simulated Member IDs (`TMH-XXXXXX`).
+- Local session storage of member data enabling instant perk redemption (e.g., automated 5% checkout discount).
+- Confirmation modal with summary card.
+
 ### Responsive Interface
 
-- Responsive header and mobile navigation.
+- Responsive header and mobile navigation menu.
 - Collapsible menu-category sidebar on smaller screens.
-- Active category highlighting based on scroll position.
-- Native HTML dialogs for product details and checkout.
-- Toast notifications for user feedback.
+- Active category scroll-spy highlighting.
+- Native HTML `<dialog>` elements for modals (product details, checkout, payment, membership confirmation).
+- Toast notifications for actionable feedback.
 - Keyboard focus indicators and reduced-motion support.
 
 ### Location and Contact
 
-- Café location information and embedded Google Maps.
-- Copy-address functionality.
-- Contact information and social media links.
-- Embedded third-party review and social feed widgets.
+- Café location information and embedded Google Maps iframe.
+- Copy-address functionality with toast feedback.
+- Real-time opening status display based on Philippine Time (PST / Asia/Manila).
+- Contact information, feedback form, and social media links.
 
 ### Progressive Web App
 
-- Web app manifest and installation icons.
-- Maskable application icon.
-- Generated service worker with automatic-update configuration.
-- Configured asset precaching.
-
-Offline behavior may depend on the availability of cached resources and the routing configuration.
+- Web app manifest and installation icons (192x192, 512x512, maskable).
+- Generated service worker with automatic-update configuration via `vite-plugin-pwa`.
+- Configured asset precaching for offline resilience.
 
 ### SEO and Link Previews
 
 - Page-specific titles and meta descriptions.
 - Canonical URLs for public pages.
-- Open Graph metadata for social sharing.
-- Large-image link-preview configuration for X/Twitter.
-- `robots.txt` and `sitemap.xml`.
-- Google Search Console verification metadata.
+- Open Graph metadata and Twitter card configurations for social sharing.
+- Structured `robots.txt` and `sitemap.xml`.
 
 ## Code Example
+
+### Menu Data Structure
 
 The menu is maintained as structured data in `src/data/menu.js`. Each product has an identifier, name, prices, and description.
 
@@ -139,7 +143,6 @@ Each item's ID must match its image filename, excluding the `.png` extension.
 
 ```bash
 git clone https://github.com/adAstra144/the-matcha-house.git
-
 cd the-matcha-house
 ```
 
@@ -160,8 +163,6 @@ Open the local URL printed in your terminal, typically:
 ```text
 http://localhost:5173/
 ```
-
-The Vite development server also supports local-network testing when accessible from another device.
 
 ## Scripts
 
@@ -187,8 +188,10 @@ npm run preview
 | `getState()` | Returns the current cart state. |
 | `getCount()` | Returns the total quantity of cart items. |
 | `getSubtotal()` | Calculates the item subtotal. |
+| `getDiscount()` | Calculates the 5% membership discount (if applicable). |
 | `getDeliveryFee()` | Returns the applicable delivery fee. |
-| `getTotal()` | Calculates the final cart total. |
+| `getTotal()` | Calculates the final cart total (Subtotal - Discount + Delivery). |
+| `hasMembership()` | Checks if a member session exists. |
 | `add(item, quantity)` | Adds an item or increases its quantity. |
 | `setQuantity(id, size, quantity)` | Updates an item's quantity. |
 | `remove(id, size)` | Removes a specific item and size. |
@@ -196,8 +199,6 @@ npm run preview
 | `clear()` | Empties the cart and resets delivery selection. |
 | `subscribe(fn)` | Registers a callback for cart updates and returns an unsubscribe function. |
 | `reload()` | Reloads cart data from session storage and notifies subscribers. |
-
-The exported `DELIVERY_FEE` constant defines the configured delivery fee.
 
 ### Toast Notifications — `src/toast.js`
 
@@ -211,35 +212,7 @@ showToast('Added to cart')
 
 ### Menu Data — `src/data/menu.js`
 
-This module exports the `categories` array containing the menu categories and their products. Its helper functions are internal to the module.
-
-## How to Use
-
-### Browse the Website
-
-1. Open the [live website](https://thematchahouse.vercel.app/).
-2. Use the navigation to visit the Home, Menu, Location, and Contact pages.
-3. Browse categories and select a product to view its details.
-4. Select a size and quantity, or use the quick-add button.
-5. Open the cart to view items, change quantities, and select pickup or delivery.
-6. Explore the location and contact pages for their demonstration content.
-
-### Update Menu Items
-
-1. Open `src/data/menu.js`.
-2. Find the relevant category inside the exported `categories` array.
-3. Add or update the product using the existing item structure.
-4. Add its corresponding PNG image under `src/assets/items/`, organized into a suitable category directory.
-5. Ensure the image filename matches the product ID.
-6. Run `npm run build` to check the production build.
-
-Example asset path:
-
-```text
-src/assets/items/signature-matcha/mango-matcha-latte.png
-```
-
-Use unique product IDs because the application uses those IDs to identify menu items and images.
+Exports the `categories` array containing all drink and food series with their respective item definitions.
 
 ## Routes
 
@@ -247,13 +220,12 @@ Use unique product IDs because the application uses those IDs to identify menu i
 |---|---|---|
 | `/` | `index.html` | Homepage and café introduction. |
 | `/menu` | `sections/menu.html` | Menu browsing and product interactions. |
-| `/cart` | `sections/cart.html` | Demo cart and simulated checkout. |
-| `/location` | `sections/location.html` | Location information and map. |
-| `/contact` | `sections/contact.html` | Contact details and social links. |
+| `/cart` | `sections/cart.html` | Demo cart, discount calculation, and simulated checkout. |
+| `/location` | `sections/location.html` | Location information, map, and store status. |
+| `/contact` | `sections/contact.html` | Contact details and feedback form. |
+| `/membership` | `sections/membership.html` | Membership application and reward perks enrollment. |
 
-The clean routes are configured through `vercel.json` for deployment and `vite.config.js` for development and preview.
-
-The cart page includes a `noindex` directive because it is a functional demonstration page rather than a search landing page.
+Clean routes are configured through `vercel.json` for deployment and `vite.config.js` for development and preview servers.
 
 ## Project Structure
 
@@ -264,6 +236,7 @@ The cart page includes a `noindex` directive because it is a functional demonstr
 │   ├── cart.html
 │   ├── contact.html
 │   ├── location.html
+│   ├── membership.html
 │   └── menu.html
 ├── public/
 │   ├── videos/
@@ -283,6 +256,7 @@ The cart page includes a `noindex` directive because it is a functional demonstr
 │   ├── cart-page.js
 │   ├── cart.js
 │   ├── location.js
+│   ├── membership.js
 │   ├── menu.js
 │   ├── script.js
 │   ├── toast.js
@@ -292,6 +266,7 @@ The cart page includes a `noindex` directive because it is a functional demonstr
 │   ├── menu.css
 │   ├── cart.css
 │   ├── location.css
+│   ├── membership.css
 │   └── contact.css
 ├── package.json
 ├── vercel.json
@@ -299,37 +274,17 @@ The cart page includes a `noindex` directive because it is a functional demonstr
 └── README.md
 ```
 
-## Testing
-
-There is currently no dedicated automated test suite or test script.
-
-The production build can be checked using:
-
-```bash
-npm run build
-```
-
-You can then test the generated site with:
-
-```bash
-npm run preview
-```
-
-Suggested manual checks include responsive navigation, menu rendering, product details, size selection, cart quantity updates, totals, simulated checkout, page routing, and PWA behavior.
-
 ## Deployment
 
 The project is configured for Vercel deployment.
 
 1. Import the repository into [Vercel](https://vercel.com/).
 2. Select the Vite framework preset.
-3. Use `npm run build` as the build command.
-4. Set `dist` as the output directory.
-5. Deploy the project.
+3. Build Command: `npm run build`.
+4. Output Directory: `dist`.
+5. Deploy.
 
-The `vercel.json` file rewrites clean routes to the corresponding HTML files.
-
-After deployment, verify that the public pages, Open Graph image, `robots.txt`, and `sitemap.xml` load correctly. The sitemap can be submitted through [Google Search Console](https://search.google.com/search-console/).
+The `vercel.json` file handles route rewrites to ensure clean URLs work without requiring `.html` extensions.
 
 ## Credits
 
@@ -337,6 +292,4 @@ After deployment, verify that the public pages, Open Graph image, `robots.txt`, 
 
 **Development assistance:** ChatGPT, Claude, and Google AI Mode.
 
-**Technologies and services:** Vite, Vite PWA, Vite QR Code Plugin, Google Fonts, Google Maps, Vercel, elfsight and bootsrap icons.
-
-Third-party assets, trademarks, and services remain subject to their respective owners' terms and rights.
+**Technologies and services:** Vite, Vite PWA, Vite QR Code Plugin, Google Fonts, Google Maps, Vercel, and Bootstrap Icons.
