@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Become a Member | The Matcha House</title>
+    <meta name="description" content="Join The Matcha House Membership Club for exclusive perks, birthday treats, and early access to new seasonal drinks.">
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/reset.css">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/membership.css">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script type="module" src="/src/script.js"></script>
+    <script type="module" src="/src/membership.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="brand">
+            <img src="/src/assets/brand.jpg" alt="TMH Logo">
+            <h1>The Matcha House</h1>
+        </a>
+
+        <button class="burger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav id="site-nav">
+            <a href="/"><span>Home</span></a>
+            <a href="/menu"><span>Menu</span></a>
+            <a href="/location"><span>Location</span></a>
+            <a href="/contact"><span>Contact</span></a>
+            <a href="/membership" aria-current="page"><span>Membership</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="membership">
+            <div class="membership-inner">
+                <div class="membership-intro">
+                    <h1>Join the club</h1>
+                    <p class="membership-lead">
+                        Become an official member of The Matcha House and enjoy exclusive perks, free birthday treats, 
+                        invites to private tastings, and 10% off your first order.
+                    </p>
+                    <ul class="membership-benefits">
+                        <li><strong>Discount</strong> — Get 5% off on all items.</li>
+                        <li><strong>Points & Rewards</strong> — Earn green leaves with every visit redeemable for treats and merch.</li>
+                        <li><strong>Free Birthday Drink</strong> — Celebrate your special day with any regular-sized matcha on us.</li>
+
+                    </ul>
+                </div>
+
+                <div class="membership-form-card">
+                    <h2>Member Application</h2>
+                    <form id="membership-form" class="membership-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="someone@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="#### ### ####">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="birthday">Birthday</label>
+                                <input type="date" id="birthday" name="birthday" required>
+                            </div>
+                        </div>
+                        <div class="form-checkbox">
+                            <label>
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <span>I agree to receive membership updates, promotions, and newsletter emails from The Matcha House.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-primary submit-btn">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <dialog class="success-modal" aria-labelledby="success-modal-title">
+        <h2 id="success-modal-title">Welcome to the Club!</h2>
+        <p>Thank you for applying, <span id="member-name-display" class="keep-together"></span>!</p>
+        <p>Your membership ID is <strong id="member-id-display"></strong>.</p>
+        <p class="success-note">We’ve saved your membership card to your session. Show this confirmation at the café to claim your welcome perk!</p>
+        <button type="button" class="btn-primary modal-close-btn">Got it</button>
+    </dialog>
+
+</body>
+</html>

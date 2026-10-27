@@ -15,6 +15,7 @@ const routes = {
     '/location': '/sections/location.html',
     '/contact': '/sections/contact.html',
     '/cart': '/sections/cart.html',
+    '/membership': '/sections/membership.html',
 }
 
 
@@ -42,6 +43,7 @@ export default defineConfig({
                 location: resolve(import.meta.dirname, 'sections/location.html'),
                 contact: resolve(import.meta.dirname, 'sections/contact.html'),
                 cart: resolve(import.meta.dirname, 'sections/cart.html'),
+                membership: resolve(import.meta.dirname, 'sections/membership.html'),
             },
         },
     },

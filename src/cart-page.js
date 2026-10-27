@@ -4,6 +4,7 @@ import {
     DELIVERY_FEE,
     getState,
     getSubtotal,
+    getDiscount,
     getDeliveryFee,
     getTotal,
     setQuantity,
@@ -128,6 +129,8 @@ function render() {
         return
     }
 
+    const discount= getDiscount()
+
     // Build the cart list, fulfilment options, totals, and checkout button.
     root.innerHTML = `
         <ul class="cart-list">${items.map(row).join('')}</ul>
@@ -156,6 +159,13 @@ function render() {
                 <dt>Delivery</dt>
                 <dd>${peso(getDeliveryFee())}</dd>
             </div>
+
+            ${discount > 0 ? `
+            <div class="cart-member-discount">
+                <dt>Membership Discount (5%)</dt>
+                <dd>−${peso(discount)}</dd>
+            </div>
+            ` : ''}
 
             <div class="cart-total">
                 <dt>Total</dt>

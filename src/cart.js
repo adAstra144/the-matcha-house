@@ -64,6 +64,27 @@ function commit() {
 load()
 
 
+/* ---------- Member Discount Helpers ---------- */
+
+// Checks if the user has completed a membership application in session storage
+export const hasMembership = () => {
+    try {
+        return Boolean(sessionStorage.getItem('tmh-member'))
+    } catch {
+        return false
+    }
+}
+
+// Calculates a 5% discount if the user is a member
+export const getDiscount = () => {
+    if (!hasMembership() || state.items.length === 0) {
+        return 0
+    }
+    // Round to the nearest peso for clean pricing
+    return Math.round(getSubtotal() * 0.05)
+}
+
+
 /* ---------- Read Cart State ---------- */
 
 // Returns the complete cart state.
@@ -84,9 +105,9 @@ export const getSubtotal = () =>
 export const getDeliveryFee = () =>
     state.delivery && state.items.length ? DELIVERY_FEE : 0
 
-// Calculates the final total, including any delivery fee.
+// Calculates the final total, including discount and any delivery fee.
 export const getTotal = () =>
-    getSubtotal() + getDeliveryFee()
+    getSubtotal() - getDiscount() + getDeliveryFee()
 
 
 /* ---------- Subscribe to Cart Updates ---------- */
