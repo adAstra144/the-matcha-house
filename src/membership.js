@@ -20,7 +20,6 @@ form.addEventListener('submit', (event) => {
     const formData = new FormData(form)
     const fullName = formData.get('fullName').trim()
     const email = formData.get('email').trim()
-    const tier = formData.get('tier')
 
     if (!fullName || !email) {
         showToast('Please fill in all required fields.')
@@ -35,8 +34,6 @@ form.addEventListener('submit', (event) => {
         email,
         phone: formData.get('phone'),
         birthday: formData.get('birthday'),
-        tier,
-        favoriteDrink: formData.get('favoriteDrink'),
         memberId: randomId,
         joinedAt: new Date().toISOString(),
     }
