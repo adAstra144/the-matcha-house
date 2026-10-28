@@ -1,20 +1,25 @@
-# The Matcha House
+# The Matcha House — Project Documentation
 
-**A Responsive Café Website with Online Ordering and Membership**
+**A responsive café website with online ordering and membership**
 
-Final Project Documentation — Web Development
+*Final Project Documentation · Web Development*
 
-**College:** College of Computer Science
+| Project Details | Information |
+|---|---|
+| College | College of Computer Science |
+| Course and Section | BSCS-1 |
+| Instructor | Sir Gerald Anthony C. Villa |
+| Submitted by | Sebastian Daniel Z. Sabio |
+| Date of Submission | [Insert date] |
+| Published Website | [thematchahouse.vercel.app](https://thematchahouse.vercel.app/) |
 
-**Course and Section:** BSCS -1
 
-**Instructor:** Sir Gerald Anthony C. Villa
+## Table of Contents
 
-**Submitted by:** Sebastian Daniel Z. Sabio
-
-**Date of Submission:** Dipindi
-
-**Published website:** https://thematchahouse.vercel.app/
+- [1. Introduction](#1-introduction)
+- [2. Objectives](#2-objectives)
+- [3. Features](#3-features)
+- [4. Code Organization and Project Structure](#4-code-organization-and-project-structure)
 
 ---
 
@@ -39,8 +44,11 @@ The purpose of the project is to design and develop a complete, responsive, mult
 ### 1.4 Target Users
 
 - **Customers and walk-in guests** who want to see the menu, prices, and directions before visiting.
+
 - **Students and remote workers** who use the café at all hours and may order ahead for pickup or delivery.
+
 - **Returning customers** who want to join the membership club and receive a discount.
+
 - **The café owner or staff**, who benefit from a single online presence that is easy to share through links and social media previews.
 
 ### 1.5 Scope and Limitations
@@ -60,14 +68,22 @@ To develop a responsive, multi-page café website for The Matcha House that lets
 ### 2.2 Specific Objectives
 
 1. To build six linked pages (Home, Menu, Location, Contact, Membership, Cart) using semantic HTML5, with HTML, CSS, and JavaScript kept in separate, organized files.
+
 2. To display all 58 menu items across 7 categories, with images, descriptions, sizes, and prices, generated from a single JavaScript data module instead of hard-coded cards.
+
 3. To implement a shopping cart that allows adding items from the menu (by quick-add or from the item dialog), changing quantities from 1 to 99, removing items, choosing pickup or delivery (₱50 delivery fee), and keeping the cart while the user moves between pages.
+
 4. To implement a membership application form that validates input, generates a member ID in the format TMH-XXXXXX, and automatically applies a 5% discount to the cart total.
+
 5. To simulate checkout with Cash, GCash, and Maya payment options, a processing state, and an order confirmation dialog.
+
 6. To make every page responsive, with layouts that adapt at 1200 px, 1023 px, 640 px, and 560 px and do not scroll sideways.
+
 7. To help customers find the café through an embedded map, a directions link, a copy-address button, and a status line showing the current Philippine time.
+
 8. To give users clear feedback and accessible controls through toast messages, hover and focus styles, ARIA labels, native dialogs, and reduced-motion support.
-9. To publish the website online at https://thematchahouse.vercel.app/ with SEO metadata, social link previews, a sitemap, and an installable PWA manifest.
+
+9. To publish the website online at [thematchahouse.vercel.app](https://thematchahouse.vercel.app/) with SEO metadata, social link previews, a sitemap, and an installable PWA manifest.
 
 ---
 
@@ -86,6 +102,7 @@ Each feature below states what it does and how it is used. Screenshots should be
 > *Figure 1. Desktop header with navigation links and cart badge.*
 
 ![Header on mobile](./screenshots/header-mobile.png)
+
 > *Figure 2. Mobile navigation menu.*
 
 ### 3.2 Home Page
@@ -99,11 +116,11 @@ Each feature below states what it does and how it is used. Screenshots should be
 > *Figure 3. Home page hero section.*
 
 ![About](./screenshots/about.png)
->
+
 > *Figure 4. About section with visit information and photos.*
 
 ![Reviews](./screenshots/reviews.png)
->
+
 > *Figure 5. Customer reviews section.*
 
 ### 3.3 Menu Page
@@ -159,7 +176,7 @@ Each feature below states what it does and how it is used. Screenshots should be
 > *Figure 12. Payment dialog.*
 
 ![Order confirmation](./screenshots/order-confirmation.png)
->
+
 > *Figure 13. Order placed confirmation.*
 
 ### 3.7 Membership Application
@@ -210,13 +227,13 @@ Every public page has its own title, description, canonical URL, Open Graph, and
 
 ### 3.12 Deployment
 
-The site is built with Vite and published on Vercel at https://thematchahouse.vercel.app/. The `vercel.json` file rewrites clean URLs such as `/menu` to the matching HTML files.
+The site is built with Vite and published on Vercel at [thematchahouse.vercel.app](https://thematchahouse.vercel.app/). The `vercel.json` file rewrites clean URLs such as `/menu` to the matching HTML files.
 
 ---
 
-## 4. Codes – Documentation
+## 4. Code Organization and Project Structure
 
-This section contains the complete source code, arranged per file, with an explanation of what each file, section, and key function does. The code is copied from the working project.
+This section summarizes the project structure and explains how the main files work together.
 
 ### 4.1 Technologies and Project Structure
 
