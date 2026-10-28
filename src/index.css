@@ -185,7 +185,10 @@
     padding-inline: 10%;
     margin: 0 auto;
 
-    height: auto;
+    min-height: calc(100dvh - var(--header-h) - 2rem);
+
+    display: flex;
+    flex-direction: column;
 }
 
 .reviews h2 {
@@ -198,10 +201,15 @@
 }
 
 .reviews .arrow {
+    margin-top: auto;
+    padding-top: 2rem;
+
     font-size: clamp(0.9rem, 1vw, 1.1rem);
+    text-align: center;
 }
 
 .reviews .arrow img {
+    display: block;
     width: clamp(2.4rem, 4vw, 3.1rem);
     height: auto;
 
