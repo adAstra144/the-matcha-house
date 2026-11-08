@@ -1,6 +1,6 @@
 # The Matcha House — Project Documentation
 
-**A responsive café website with online ordering and membership**
+**A responsive café website**
 
 *Final Project Documentation · Web Development*
 
@@ -10,7 +10,7 @@
 | Course and Section | BSCS-1 |
 | Instructor | Sir Gerald Anthony C. Villa |
 | Submitted by | Sebastian Daniel Z. Sabio |
-| Date of Submission | [Insert date] |
+| Date of Submission | Dipindi |
 | Published Website | [thematchahouse.vercel.app](https://thematchahouse.vercel.app/) |
 
 
